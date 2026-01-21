@@ -1,5 +1,4 @@
-[18:25, 21/01/2026] Rafaela Supervisora SAO12: https://sao12gds-rgb.github.io/gerador-acareacao/
-[18:41, 21/01/2026] Rafaela: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -33,7 +32,7 @@
     }
 
     .logo-main {
-      width: 220px;
+      width: 240px;
       height: auto;
       display: block;
       margin: 0 auto 12px auto;
@@ -121,7 +120,6 @@
       margin-top: 10px;
       user-select: none;
     }
-
     .upload-btn:hover { background-color: #0052a3; }
 
     .image-preview { margin-top: 15px; display: none; }
@@ -144,7 +142,7 @@
     }
 
     .logo-header { width: 100%; text-align: center; margin-bottom: 8px; }
-    .logo-header img { max-width: 180px; height: auto; }
+    .logo-header img { max-width: 200px; height: auto; }
 
     .etiqueta-space {
       width: 220px;
@@ -275,7 +273,6 @@
       margin-top: 8px;
       width: 100%;
     }
-
     .btn-link-copy:hover { background-color: #0052a3; }
 
     @media print {
@@ -293,8 +290,9 @@
 
     <!-- FORMULÁRIO -->
     <div class="form-container">
-      <!-- LOGO NO TOPO DO FORM -->
-      <img class="logo-main" id="logoAzulForm" alt="Azul Cargo Express" />
+      <!-- Logo do repo -->
+      <img class="logo-main" src="logo-azulcargo.png" alt="Azul Cargo Express"
+           onerror="this.style.display='none'; alert('Logo não carregou. Verifique se o arquivo está na raiz do repo e se o nome é exatamente: logo-azulcargo.png');" />
 
       <h1>📋 Gerador de Acareação Azul Cargo</h1>
 
@@ -305,11 +303,8 @@
             <input type="text" id="entregador" placeholder="Ex: CAIQUE TORRES DA SILVA" required />
           </div>
 
-          <!-- REMOVIDO: CAMPO DATA * -->
-          <div class="form-group" style="display:none;">
-            <label for="data">Data *</label>
-            <input type="date" id="data" />
-          </div>
+          <!-- AQUI: campo Data removido (não existe mais) -->
+          <div></div>
         </div>
 
         <div class="form-row">
@@ -375,7 +370,6 @@
 
       <div class="info-box">
         ℹ️ <strong>Dica:</strong> Preencha os campos obrigatórios, adicione a etiqueta e clique em "Gerar Documento".
-        Imprime em 2 páginas limpas, sem quebra no meio!
       </div>
     </div>
 
@@ -385,7 +379,7 @@
       <!-- PÁGINA 1 -->
       <div class="doc-page">
         <div class="logo-header">
-          <img id="logoAzulDoc1" alt="Azul Cargo Express" />
+          <img src="logo-azulcargo.png" alt="Azul Cargo Express" />
         </div>
 
         <div style="text-align:center; font-weight:bold; font-size:16px; border-bottom:1px solid #000; padding-bottom:8px;">
@@ -423,7 +417,7 @@
       <!-- PÁGINA 2 -->
       <div class="doc-page page-break">
         <div class="logo-header">
-          <img id="logoAzulDoc2" alt="Azul Cargo Express" />
+          <img src="logo-azulcargo.png" alt="Azul Cargo Express" />
         </div>
 
         <div style="text-align:center; margin-bottom:8px; font-weight:bold; font-size:16px; border-bottom:1px solid #000; padding-bottom:8px;">
@@ -479,18 +473,14 @@
         <div class="section-box">
           <div class="section-title">Relato destinatário (OBRIGATÓRIO):</div>
           <div class="lines">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
+            <div class="line"></div><div class="line"></div><div class="line"></div>
           </div>
         </div>
 
         <div class="section-box">
           <div class="section-title">Observações Entregador (OBRIGATÓRIO):</div>
           <div class="lines">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
+            <div class="line"></div><div class="line"></div><div class="line"></div>
           </div>
         </div>
 
@@ -521,15 +511,6 @@
   </div>
 
   <script>
-    // LOGO EMBUTIDO (não depende de arquivo/pasta)
-    const LOGO_AZUL_BASE64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjgAAACdCAMAAACO5fKwAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAxQTFRF////AAAAAAAAAAAAkJ7lNQAAABh0Uk5T/////////////////////////wBhJqYAAABvSURBVHja7N3BDoAgEETR8v9f2k1q3cEw2bQwYfQkWQm0Wv3n7mQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgq7y8AAwBz7wqf4q0bSAAAAABJRU5ErkJggg==";
-    // ↑ Esse base64 já resolve. Se você quiser trocar depois por outro logo, basta substituir essa string.
-
-    // coloca o logo no form e nos docs
-    document.getElementById('logoAzulForm').src = LOGO_AZUL_BASE64;
-    document.getElementById('logoAzulDoc1').src = LOGO_AZUL_BASE64;
-    document.getElementById('logoAzulDoc2').src = LOGO_AZUL_BASE64;
-
     // Upload etiqueta
     document.getElementById('fileInput').addEventListener('change', function(e) {
       const file = e.target.files[0];
@@ -553,7 +534,7 @@
       return data.toLocaleDateString('pt-BR');
     }
 
-    // Link de compartilhamento (sem o campo "data")
+    // Link sem "data"
     function gerarLink() {
       const entregador = document.getElementById('entregador').value;
       const motivo = document.getElementById('motivo').value;
@@ -578,12 +559,9 @@
       const link = gerarLink();
       navigator.clipboard.writeText(link).then(() => {
         alert('Link copiado para a área de transferência!');
-      }).catch(err => {
-        console.error('Erro ao copiar:', err);
-      });
+      }).catch(err => console.error('Erro ao copiar:', err));
     }
 
-    // Preenche campos ao abrir pelo link
     function carregarParametrosURL() {
       const params = new URLSearchParams(window.location.search);
       if (params.has('entregador')) {
@@ -602,6 +580,7 @@
       const entregador = (document.getElementById('entregador').value || '').toUpperCase();
       const motivo = document.getElementById('motivo').value;
       const cte = (document.getElementById('cte').value || '').toUpperCase();
+
       const dataEntrega = document.getElementById('dataEntrega').value;
       const dataSolicitacao = document.getElementById('dataSolicitacao').value;
       const dataLimite = document.getElementById('dataLimite').value;
