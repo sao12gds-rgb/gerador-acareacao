@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0088)file:///C:/Users/gdslo/Downloads/Gerador%20Acarea%C3%A7%C3%A3o%20Azul%20Cargo%20(5).html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Acareação - Azul Cargo</title>
     <style>
@@ -194,6 +194,24 @@
             gap: 10px;
         }
 
+        .logo-space {
+            width: 120px;
+            height: 60px;
+            flex-shrink: 0;
+        }
+
+        .logo-space img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .doc-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex: 1;
+        }
+
         .etiqueta-space {
             width: 220px;
             height: 320px;
@@ -212,6 +230,27 @@
         .etiqueta-space img {
             max-width: 100%;
             max-height: 100%;
+        }
+
+        .doc-info {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .info-row {
+            margin: 3px 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .info-item {
+            flex: 1;
+        }
+
+        .info-label {
+            font-weight: bold;
+            display: inline-block;
+            min-width: 100px;
         }
 
         .doc-important {
@@ -429,7 +468,7 @@
         }
 
         .logo-header img {
-            max-width: 180px; /* aumentei um pouco */
+            max-width: 120px;
             height: auto;
         }
     </style>
@@ -439,18 +478,23 @@
         <!-- FORMULÁRIO -->
         <div class="form-container">
             <h1>📋 Gerador de Acareação Azul Cargo</h1>
-
+            
             <form id="form">
-                <!-- ✅ DATA REMOVIDA: agora só o Nome do Entregador -->
-                <div class="form-group">
-                    <label for="entregador">Nome do Entregador *</label>
-                    <input type="text" id="entregador" placeholder="Ex: CAIQUE TORRES DA SILVA" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="entregador">Nome do Entregador *</label>
+                        <input type="text" id="entregador" placeholder="Ex: CAIQUE TORRES DA SILVA" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="data">Data *</label>
+                        <input type="date" id="data" required="">
+                    </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="motivo">Motivo da Acareação *</label>
-                        <select id="motivo" required>
+                        <select id="motivo" required="">
                             <option value="">Selecione...</option>
                             <option value="CLIENTE DESCONHECE O RECEBIMENTO">CLIENTE DESCONHECE O RECEBIMENTO</option>
                             <option value="ENDEREÇO NÃO LOCALIZADO">ENDEREÇO NÃO LOCALIZADO</option>
@@ -461,29 +505,29 @@
                     </div>
                     <div class="form-group">
                         <label for="cte">Número do CTE *</label>
-                        <input type="text" id="cte" placeholder="Ex: 57291584" required>
+                        <input type="text" id="cte" placeholder="Ex: 57291584" required="">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="dataEntrega">Data da Entrega da Mercadoria *</label>
-                        <input type="date" id="dataEntrega" required>
+                        <input type="date" id="dataEntrega" required="">
                     </div>
                     <div class="form-group">
                         <label for="dataSolicitacao">Data da Solicitação da Acareação *</label>
-                        <input type="date" id="dataSolicitacao" required>
+                        <input type="date" id="dataSolicitacao" required="">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="dataLimite">Data Limite da Acareação *</label>
-                        <input type="date" id="dataLimite" required>
+                        <input type="date" id="dataLimite" required="">
                     </div>
                     <div class="form-group">
                         <label for="linkCompartilhamento">Link para Compartilhamento</label>
-                        <input type="text" id="linkCompartilhamento" readonly placeholder="Clique para copiar">
+                        <input type="text" id="linkCompartilhamento" readonly="" placeholder="Clique para copiar">
                         <button type="button" class="btn-link-copy" onclick="copiarLink()">📋 Copiar Link</button>
                     </div>
                 </div>
@@ -491,10 +535,9 @@
                 <div class="upload-section">
                     <label>Foto da Etiqueta (Opcional)</label>
                     <input type="file" id="fileInput" accept="image/*,.pdf">
-                    <div class="upload-btn" onclick="document.getElementById('fileInput').click()">📷 Selecionar Etiqueta</div>
+                    <div class="upload-btn" onclick="document.getElementById(&#39;fileInput&#39;).click()">📷 Selecionar Etiqueta</div>
                     <div class="image-preview" id="imagePreview">
-                        <!-- ✅ removido file:/// -->
-                        <img id="previewImg" src="" alt="Etiqueta">
+                        <img id="previewImg" src="file:///C:/Users/gdslo/Downloads/Gerador%20Acarea%C3%A7%C3%A3o%20Azul%20Cargo%20(5).html" alt="Etiqueta">
                     </div>
                 </div>
 
@@ -515,10 +558,9 @@
             <!-- PÁGINA 1 - ETIQUETA E INFORMAÇÕES -->
             <div class="doc-page">
                 <div class="logo-header">
-                    <!-- ✅ logo correto para GitHub Pages -->
-                    <img src="img/logo-azulcargo.png" alt="Azul Cargo Express">
+                    <img src="./Gerador de Acareação - Azul Cargo_files/8c9c2391-e142-45fd-8eed-5b1b00d0b5c7" alt="Logo Azul Cargo">
                 </div>
-
+                
                 <div class="doc-header" style="border-bottom: 1px solid #000;">
                     <div style="flex: 1; text-align: center; font-weight: bold; font-size: 16px;">
                         ACAREAÇÃO
@@ -539,8 +581,7 @@
                 </div>
 
                 <div class="etiqueta-space" id="etiquetaSpace" style="margin: 15px auto; width: 280px; height: 350px;">
-                    <!-- ✅ removido file:/// -->
-                    <img id="etiquetaImg" src="" alt="Etiqueta" style="display:none;">
+                    <img id="etiquetaImg" src="file:///C:/Users/gdslo/Downloads/Gerador%20Acarea%C3%A7%C3%A3o%20Azul%20Cargo%20(5).html" alt="Etiqueta" style="display:none;">
                     <span id="etiquetaPlaceholder">Etiqueta</span>
                 </div>
 
@@ -557,8 +598,7 @@
             <!-- PÁGINA 2 - DECLARAÇÃO E FORMULÁRIO -->
             <div class="doc-page page-break">
                 <div class="logo-header">
-                    <!-- ✅ logo correto para GitHub Pages -->
-                    <img src="img/logo-azulcargo.png" alt="Azul Cargo Express">
+                    <img src="./Gerador de Acareação - Azul Cargo_files/8c9c2391-e142-45fd-8eed-5b1b00d0b5c7" alt="Logo Azul Cargo">
                 </div>
 
                 <div style="text-align: center; margin-bottom: 8px; font-weight: bold; font-size: 16px; border-bottom: 1px solid #000; padding-bottom: 8px;">
@@ -580,7 +620,7 @@
 
                 <div class="declaration-box">
                     <div class="declaration-title">ACAREAÇÃO</div>
-
+                    
                     <div class="declaration-text">
                         Eu, _______________________________________________________ portador(a) do documento RG/CPF nº __________________, grau de parentesco com destinatário _____________, declaro informações referente ao CTE <span id="doc-cte2"></span> (Campos de preenchimento obrigatório):
                     </div>
@@ -634,11 +674,11 @@
                 <div class="footer-section">
                     <div class="footer-item">
                         <strong>Local:</strong>
-                        <input type="text" class="footer-input" readonly>
+                        <input type="text" class="footer-input" readonly="">
                     </div>
                     <div class="footer-item">
                         <strong>Data:</strong>
-                        <input type="text" class="footer-input" readonly>
+                        <input type="text" class="footer-input" readonly="">
                     </div>
                 </div>
 
@@ -657,6 +697,9 @@
     </div>
 
     <script>
+        const hoje = new Date().toISOString().split('T')[0];
+        document.getElementById('data').value = hoje;
+
         document.getElementById('fileInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -678,24 +721,25 @@
             return data.toLocaleDateString('pt-BR');
         }
 
-        // ✅ removido "data" do link compartilhável
         function gerarLink() {
             const entregador = document.getElementById('entregador').value;
+            const data = document.getElementById('data').value;
             const motivo = document.getElementById('motivo').value;
             const cte = document.getElementById('cte').value;
             const dataEntrega = document.getElementById('dataEntrega').value;
             const dataSolicitacao = document.getElementById('dataSolicitacao').value;
             const dataLimite = document.getElementById('dataLimite').value;
-
+            
             const params = new URLSearchParams({
                 entregador,
+                data,
                 motivo,
                 cte,
                 dataEntrega,
                 dataSolicitacao,
                 dataLimite
             });
-
+            
             return window.location.origin + window.location.pathname + '?' + params.toString();
         }
 
@@ -708,11 +752,11 @@
             });
         }
 
-        // ✅ removido "data" da leitura do link compartilhável
         function carregarParametrosURL() {
             const params = new URLSearchParams(window.location.search);
             if (params.has('entregador')) {
                 document.getElementById('entregador').value = decodeURIComponent(params.get('entregador'));
+                document.getElementById('data').value = params.get('data') || new Date().toISOString().split('T')[0];
                 document.getElementById('motivo').value = params.get('motivo') || '';
                 document.getElementById('cte').value = params.get('cte') || '';
                 document.getElementById('dataEntrega').value = params.get('dataEntrega') || '';
@@ -741,7 +785,7 @@
             document.getElementById('doc-cte-p1').textContent = cte;
             document.getElementById('doc-cte2').textContent = cte;
             document.getElementById('doc-assinatura').textContent = entregador;
-
+            
             document.getElementById('doc-dataEntrega-p1').textContent = dataEntregaFormatada;
             document.getElementById('doc-dataEntrega-p2').textContent = dataEntregaFormatada;
             document.getElementById('doc-dataSolicitacao-p1').textContent = dataSolicitacaoFormatada;
@@ -761,5 +805,6 @@
 
         carregarParametrosURL();
     </script>
-</body>
-</html>
+
+
+</body></html>
