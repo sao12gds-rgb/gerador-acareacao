@@ -135,6 +135,7 @@
       max-width: 210mm;
       min-height: 297mm;
       border: 1px solid #999;
+      page-break-after: avoid;
       font-family: Arial, sans-serif;
       font-size: 15px;
       line-height: 1.6;
@@ -157,7 +158,6 @@
       overflow: hidden;
       flex-shrink: 0;
     }
-
     .etiqueta-space img { max-width: 100%; max-height: 100%; }
 
     .doc-important {
@@ -191,6 +191,18 @@
 
     .declaration-text { text-align: justify; margin-bottom: 10px; }
 
+    /* Linhas maiores para preencher de caneta */
+    .fill-line {
+      display: inline-block;
+      border-bottom: 1px solid #000;
+      height: 18px;
+      vertical-align: baseline;
+      margin: 0 6px;
+    }
+    .fill-name { width: 300px; }
+    .fill-doc  { width: 220px; }
+    .fill-kin  { width: 240px; }
+
     .checklist-items {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -218,7 +230,7 @@
     .lines { border: 1px solid #999; padding: 10px; min-height: 80px; }
     .line { border-bottom: 1px solid #000; height: 18px; margin-bottom: 6px; }
 
-    .page-break { page-break-before: always; }
+    .page-break { page-break-before: always; page-break-inside: avoid; }
 
     .footer-section {
       display: grid;
@@ -274,29 +286,55 @@
     }
     .btn-link-copy:hover { background-color: #0052a3; }
 
-    /* ======= IMPRESSÃO ======= */
+    /* ✅ IMPRESSÃO: FORÇA AS 2 PÁGINAS (ETIQUETA + DECLARAÇÃO) */
+    @page { size: A4; margin: 10mm; }
+
     @media print {
-      body { background: white; padding: 0; margin: 0; }
+      body { background: white; margin: 0; padding: 0; }
+
       .form-container { display: none !important; }
-      .container { max-width: 100%; margin: 0; }
 
-      .pages-container { margin: 0; padding: 0; }
+      .pages-container {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
 
-      /* força 2 páginas certinhas */
-      .doc-page { border: none; margin: 0; max-width: 100%; min-height: auto; page-break-after: always; }
-      .doc-page:last-child { page-break-after: auto; }
+      /* Cada doc-page vira uma folha */
+      .doc-page {
+        display: block !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;      /* controle via @page margin */
+        width: 100% !important;
+        min-height: auto !important;
+        page-break-after: always;
+        break-after: page;
+      }
+      .doc-page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
 
-      /* IMPORTANTÍSSIMO: não deixar a etiqueta sumir */
-      #etiquetaImg {
+      /* Evita o navegador "engolir" a página da etiqueta */
+      .etiqueta-space,
+      #etiquetaImg,
+      #etiquetaPlaceholder {
         display: block !important;
         visibility: visible !important;
       }
-      #etiquetaPlaceholder {
-        visibility: visible !important;
+
+      /* Evita cortes no meio */
+      .declaration-box,
+      .doc-important,
+      .section-box,
+      .signature-section {
+        page-break-inside: avoid;
+        break-inside: avoid;
       }
 
-      /* evita quebras esquisitas dentro da página */
-      .declaration-box, .doc-important, .section-box { break-inside: avoid; }
+      /* Algumas engines escondem imagens com overflow/transform */
+      img { max-width: 100% !important; }
     }
   </style>
 </head>
@@ -317,6 +355,8 @@
             <label for="entregador">Nome do Entregador *</label>
             <input type="text" id="entregador" placeholder="Ex: CAIQUE TORRES DA SILVA" required />
           </div>
+
+          <!-- Campo Data removido -->
           <div></div>
         </div>
 
@@ -376,20 +416,20 @@
 
         <div class="button-group">
           <button type="submit" class="btn-generate">✓ Gerar Documento</button>
-          <button type="button" class="btn-print" id="btnPrint">🖨️ Imprimir</button>
+          <button type="button" class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
           <button type="reset" class="btn-clear">🔄 Limpar</button>
         </div>
       </form>
 
       <div class="info-box">
-        ℹ️ <strong>Dica:</strong> Preencha os campos obrigatórios, adicione a etiqueta e clique em "Gerar Documento".
+        ℹ️ <strong>Dica:</strong> Ao imprimir, devem sair <strong>2 páginas</strong>: (1) Etiqueta e (2) Declaração.
       </div>
     </div>
 
     <!-- DOCUMENTOS GERADOS (2 PÁGINAS) -->
     <div class="pages-container" id="pagesContainer">
 
-      <!-- PÁGINA 1 -->
+      <!-- PÁGINA 1 (ETIQUETA) -->
       <div class="doc-page">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express" />
@@ -427,7 +467,7 @@
         </div>
       </div>
 
-      <!-- PÁGINA 2 -->
+      <!-- PÁGINA 2 (DECLARAÇÃO) -->
       <div class="doc-page page-break">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express" />
@@ -451,11 +491,11 @@
         <div class="declaration-box">
           <div class="declaration-title">ACAREAÇÃO</div>
 
-          <!-- Texto com “espaço grande” para escrever à caneta -->
+          <!-- ✅ Ajuste: linhas maiores para escrever de caneta -->
           <div class="declaration-text">
-            Eu, _______________________________________________________________________________________
-            portador(a) do documento RG/CPF nº _________________________________________________________,
-            grau de parentesco com destinatário ________________________________________________________,
+            Eu,<span class="fill-line fill-name"></span>
+            portador(a) do documento RG/CPF nº<span class="fill-line fill-doc"></span>,
+            grau de parentesco com destinatário<span class="fill-line fill-kin"></span>,
             declaro informações referente ao CTE <span id="doc-cte2"></span> (Campos de preenchimento obrigatório):
           </div>
 
@@ -528,52 +568,21 @@
   </div>
 
   <script>
-    const fileInput = document.getElementById('fileInput');
-    const previewImg = document.getElementById('previewImg');
-    const imagePreview = document.getElementById('imagePreview');
-
-    const etiquetaImg = document.getElementById('etiquetaImg');
-    const etiquetaPlaceholder = document.getElementById('etiquetaPlaceholder');
-
-    let etiquetaCarregadaOK = false;
-
-    // Upload etiqueta
-    fileInput.addEventListener('change', function(e) {
+    // Upload etiqueta (vira DataURL -> imprime sim)
+    document.getElementById('fileInput').addEventListener('change', function(e) {
       const file = e.target.files[0];
-      etiquetaCarregadaOK = false;
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          document.getElementById('previewImg').src = event.target.result;
+          document.getElementById('imagePreview').style.display = 'block';
 
-      if (!file) return;
-
-      // Se escolher PDF, não tem como mostrar como imagem sem conversão.
-      // (A gente pode fazer depois, mas por agora: avisa e não tenta imprimir etiqueta vazia.)
-      if (file.type === 'application/pdf') {
-        alert('Você selecionou um PDF. Para a etiqueta aparecer e imprimir, selecione uma IMAGEM (JPG/PNG).');
-        fileInput.value = '';
-        previewImg.src = '';
-        imagePreview.style.display = 'none';
-        etiquetaImg.src = '';
-        etiquetaImg.style.display = 'none';
-        etiquetaPlaceholder.style.display = 'inline';
-        return;
+          document.getElementById('etiquetaImg').src = event.target.result;
+          document.getElementById('etiquetaImg').style.display = 'block';
+          document.getElementById('etiquetaPlaceholder').style.display = 'none';
+        };
+        reader.readAsDataURL(file);
       }
-
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        const dataUrl = event.target.result;
-
-        // preview
-        previewImg.src = dataUrl;
-        imagePreview.style.display = 'block';
-
-        // etiqueta na página 1
-        etiquetaImg.onload = () => { etiquetaCarregadaOK = true; };
-        etiquetaImg.onerror = () => { etiquetaCarregadaOK = false; };
-
-        etiquetaImg.src = dataUrl;
-        etiquetaImg.style.display = 'block';
-        etiquetaPlaceholder.style.display = 'none';
-      };
-      reader.readAsDataURL(file);
     });
 
     function formatarData(dataString) {
@@ -591,7 +600,10 @@
       const dataSolicitacao = document.getElementById('dataSolicitacao').value;
       const dataLimite = document.getElementById('dataLimite').value;
 
-      const params = new URLSearchParams({ entregador, motivo, cte, dataEntrega, dataSolicitacao, dataLimite });
+      const params = new URLSearchParams({
+        entregador, motivo, cte, dataEntrega, dataSolicitacao, dataLimite
+      });
+
       return window.location.origin + window.location.pathname + '?' + params.toString();
     }
 
@@ -613,43 +625,6 @@
         document.getElementById('dataLimite').value = params.get('dataLimite') || '';
       }
     }
-
-    // Impressão: espera a etiqueta carregar antes de imprimir (resolve “sumir na impressão”)
-    async function imprimirComEtiqueta() {
-      // se tem imagem de etiqueta, garante que ela está carregada
-      if (etiquetaImg && etiquetaImg.src && etiquetaImg.src.trim() !== "") {
-        etiquetaImg.style.display = 'block';
-        etiquetaPlaceholder.style.display = 'none';
-
-        try {
-          // espera carregar se ainda não carregou
-          if (!etiquetaImg.complete || !etiquetaCarregadaOK) {
-            await new Promise((resolve, reject) => {
-              const ok = () => resolve();
-              const fail = () => reject(new Error("Falha ao carregar etiqueta"));
-              etiquetaImg.onload = ok;
-              etiquetaImg.onerror = fail;
-            });
-          }
-
-          // melhora no Chrome/Edge quando disponível
-          if (etiquetaImg.decode) {
-            try { await etiquetaImg.decode(); } catch(e) {}
-          }
-        } catch (e) {
-          // fallback: imprime com placeholder
-          etiquetaPlaceholder.style.display = 'inline';
-        }
-      } else {
-        // sem etiqueta, mostra placeholder
-        etiquetaPlaceholder.style.display = 'inline';
-      }
-
-      // pausa curta para renderizar antes do print
-      setTimeout(() => window.print(), 150);
-    }
-
-    document.getElementById('btnPrint').addEventListener('click', imprimirComEtiqueta);
 
     document.getElementById('form').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -690,5 +665,6 @@
   </script>
 </body>
 </html>
+
 
 
