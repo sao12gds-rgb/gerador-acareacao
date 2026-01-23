@@ -7,12 +7,7 @@
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 
-body {
-  font-family: Arial, sans-serif;
-  background:#f5f5f5;
-  padding:20px;
-}
-
+body { font-family: Arial, sans-serif; background:#f5f5f5; padding:20px; }
 .container { max-width:900px; margin:auto; }
 
 .form-container {
@@ -22,17 +17,9 @@ body {
   box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
-.logo-main {
-  display:block;
-  margin:0 auto 10px;
-  max-width:220px;
-}
+.logo-main { display:block; margin:0 auto 10px; max-width:220px; }
 
-h1 {
-  text-align:center;
-  color:#0066cc;
-  margin-bottom:20px;
-}
+h1 { text-align:center; color:#0066cc; margin-bottom:20px; }
 
 .form-row {
   display:grid;
@@ -43,7 +30,7 @@ h1 {
 
 label { font-weight:bold; font-size:14px; }
 
-input, select {
+input {
   width:100%;
   padding:10px;
   border:1px solid #ccc;
@@ -59,9 +46,9 @@ button {
   cursor:pointer;
 }
 
-.btn-generate { background:#0066cc; color:#fff; }
+.btn-generate { background:#0066cc; color:#fff; width:100%; margin-top:10px; }
+.btn-generate:hover { opacity:.95; }
 
-/* Botão PDF/Impressão */
 .btn-print {
   background:#28a745;
   color:#fff;
@@ -70,16 +57,27 @@ button {
   width:100%;
 }
 
-/* (opcional) botão desabilitado visualmente */
-.btn-print:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.btn-copy {
+  background:#0066cc;
+  color:#fff;
+  display:none;
+  margin-top:10px;
+  width:100%;
 }
 
-.pages-container { display:none; }
+.btn-wa {
+  background:#25D366;
+  color:#fff;
+  display:none;
+  margin-top:10px;
+  width:100%;
+}
 
-/* ================= DOCUMENTO ================= */
+.btn-print:disabled, .btn-copy:disabled, .btn-wa:disabled { opacity:.6; cursor:not-allowed; }
 
+.pages-container { display:none; margin-top:20px; }
+
+/* ======== DOCUMENTO ======== */
 .doc-page {
   width:210mm;
   min-height:297mm;
@@ -87,16 +85,9 @@ button {
   background:#fff;
 }
 
-.logo-header {
-  text-align:center;
-  margin-bottom:8px;
-}
+.logo-header { text-align:center; margin-bottom:8px; }
+.logo-header img { max-width:160px; }
 
-.logo-header img {
-  max-width:160px;
-}
-
-/* Títulos */
 .doc-title {
   text-align:center;
   font-weight:bold;
@@ -106,7 +97,6 @@ button {
   margin-bottom:10px;
 }
 
-/* Etiqueta */
 .etiqueta-space {
   width:280px;
   height:350px;
@@ -117,14 +107,12 @@ button {
   justify-content:center;
 }
 
-/* Caixa declaração */
 .declaration-box {
   border:2px solid #000;
   padding:12px;
   font-size:13px;
 }
 
-/* Linhas longas */
 .long-line {
   display:block;
   border-bottom:1px solid #000;
@@ -133,7 +121,6 @@ button {
   margin:6px 0 10px 0;
 }
 
-/* Assinaturas */
 .signature {
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -148,36 +135,49 @@ button {
   font-size:12px;
 }
 
-/* ================= IMPRESSÃO ================= */
+/* ======== WHATSAPP BOX ======== */
+.wa-box {
+  display:none;
+  margin-top:15px;
+  padding:12px;
+  border:1px dashed #999;
+  border-radius:6px;
+  background:#fafafa;
+}
+
+.wa-box h2 {
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+textarea {
+  width:100%;
+  min-height:110px;
+  resize:vertical;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:4px;
+  font-family: Arial, sans-serif;
+  font-size:13px;
+}
+
+/* ======== IMPRESSÃO ======== */
 @media print {
   body { background:#fff; padding:0; }
   .form-container { display:none !important; }
   .pages-container { display:block !important; }
 
-  .logo-header img {
-    max-width:140px; /* LOGO COMUM */
-  }
+  .logo-header img { max-width:140px; }
 
-  .page-break {
-    page-break-before:always;
-    break-before: page;
-  }
+  .page-break { page-break-before:always; break-before: page; }
 
-  .doc-page {
-    page-break-after: always;
-    break-after: page;
-  }
-
-  .doc-page:last-child {
-    page-break-after: auto;
-    break-after: auto;
-  }
+  .doc-page { page-break-after: always; break-after: page; }
+  .doc-page:last-child { page-break-after: auto; break-after: auto; }
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
   <!-- FORMULÁRIO -->
@@ -198,10 +198,22 @@ button {
 
     <button class="btn-generate" type="button" onclick="gerar()">Gerar Documento</button>
 
-    <!-- ✅ Botão PDF ARRUMADO: chama uma função que garante exibição e aciona print -->
     <button class="btn-print" id="btnPdf" type="button" onclick="baixarPDF()">
-      ⬇️ Baixar PDF
+      ⬇️ Baixar PDF (Salvar como PDF)
     </button>
+
+    <div class="wa-box" id="waBox">
+      <h2>Mensagem WhatsApp (copie e envie junto com o PDF):</h2>
+      <textarea id="waMsg" readonly></textarea>
+
+      <button class="btn-copy" id="btnCopy" type="button" onclick="copiarMensagem()">
+        📋 Copiar mensagem
+      </button>
+
+      <button class="btn-wa" id="btnOpenWa" type="button" onclick="abrirWhatsAppWeb()">
+        💬 Abrir WhatsApp Web com a mensagem
+      </button>
+    </div>
   </div>
 
   <!-- DOCUMENTOS -->
@@ -264,42 +276,67 @@ function gerar() {
     return;
   }
 
+  // Preenche documento
   document.getElementById('doc-entregador').textContent = entregador.toUpperCase();
   document.getElementById('doc-cte').textContent = cte;
   document.getElementById('doc-cte2').textContent = cte;
 
-  // Mostra as páginas e o botão de PDF
+  // Mostra páginas + botões
   document.getElementById('docs').style.display = 'block';
   document.getElementById('btnPdf').style.display = 'block';
 
-  // (opcional) rola até o documento
+  // Monta WhatsApp
+  const msg =
+`Olá! Segue em anexo o documento de acareação referente ao CTE ${cte}.
+Entregador: ${entregador.toUpperCase()}
+Por favor, imprimir, preencher e devolver assinado.`;
+
+  document.getElementById('waMsg').value = msg;
+  document.getElementById('waBox').style.display = 'block';
+  document.getElementById('btnCopy').style.display = 'block';
+  document.getElementById('btnOpenWa').style.display = 'block';
+
   setTimeout(() => {
     document.getElementById('docs').scrollIntoView({ behavior: 'smooth' });
   }, 100);
 }
 
-/**
- * "Baixar PDF" no navegador = abrir impressão e o usuário escolhe "Salvar como PDF".
- * Isso funciona sem bibliotecas e garante que as 2 páginas estejam visíveis antes do print.
- */
 function baixarPDF() {
-  // garante que o documento está visível
   const docs = document.getElementById('docs');
   if (getComputedStyle(docs).display === 'none') {
     alert('Primeiro clique em "Gerar Documento".');
     return;
   }
+  setTimeout(() => window.print(), 150);
+}
 
-  // dá um tempo pro navegador “assentar” layout antes de imprimir
-  setTimeout(() => {
-    window.print();
-  }, 150);
+function copiarMensagem() {
+  const txt = document.getElementById('waMsg').value;
+  if (!txt) return;
+
+  // tenta clipboard moderno
+  navigator.clipboard?.writeText(txt).then(() => {
+    alert('Mensagem copiada!');
+  }).catch(() => {
+    // fallback antigo
+    const ta = document.getElementById('waMsg');
+    ta.focus();
+    ta.select();
+    document.execCommand('copy');
+    alert('Mensagem copiada!');
+  });
+}
+
+function abrirWhatsAppWeb() {
+  const txt = document.getElementById('waMsg').value || '';
+  if (!txt) return;
+  const url = 'https://web.whatsapp.com/send?text=' + encodeURIComponent(txt);
+  window.open(url, '_blank', 'noopener,noreferrer');
 }
 </script>
 
 </body>
 </html>
-
 
 
 
