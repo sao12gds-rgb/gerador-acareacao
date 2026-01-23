@@ -64,6 +64,13 @@
       gap: 20px;
     }
 
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #0066cc;
+      box-shadow: 0 0 5px rgba(0,102,204,0.3);
+    }
+
     .button-group {
       display: flex;
       gap: 10px;
@@ -137,6 +144,8 @@
     .logo-header img { max-width: 200px; height: auto; }
 
     .etiqueta-space {
+      width: 220px;
+      height: 320px;
       background-color: #fafafa;
       border: 2px solid #333;
       display: flex;
@@ -146,38 +155,37 @@
       color: #999;
       text-align: center;
       overflow: hidden;
-      margin: 12px auto;
-      width: 280px;
-      height: 350px;
+      flex-shrink: 0;
     }
 
-    .etiqueta-space img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .etiqueta-space img { max-width: 100%; max-height: 100%; }
 
     .doc-important {
       background-color: #fffacd;
       border: 1px solid #ddd;
       padding: 12px;
-      margin: 12px 0 0 0;
-      font-size: 12px;
-      line-height: 1.4;
+      margin: 15px 0;
+      font-size: 13px;
+      line-height: 1.5;
     }
-    .doc-important h3 { margin: 0 0 6px 0; font-size: 13px; font-weight: bold; }
+
+    .doc-important h3 { margin: 0 0 8px 0; font-size: 14px; font-weight: bold; }
     .doc-important ul { margin-left: 15px; margin: 0; }
     .doc-important li { margin: 2px 0; }
 
     .declaration-box {
       border: 2px solid #000;
       padding: 15px;
-      margin: 12px 0;
-      font-size: 13px;
-      line-height: 1.5;
+      margin: 15px 0;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     .declaration-title {
       text-align: center;
       font-weight: bold;
       margin-bottom: 8px;
-      font-size: 14px;
+      font-size: 15px;
       text-transform: uppercase;
     }
 
@@ -186,16 +194,16 @@
     .checklist-items {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin: 10px 0;
-      font-size: 12px;
+      gap: 10px;
+      margin: 12px 0;
+      font-size: 13px;
     }
 
     .checklist-item {
       display: flex;
       justify-content: space-between;
       border: 1px solid #ddd;
-      padding: 10px;
+      padding: 12px;
       background-color: #fafafa;
       min-height: 30px;
       align-items: center;
@@ -204,18 +212,20 @@
     .checklist-item label { margin: 0; font-weight: normal; }
     .checkbox-options { text-align: right; font-weight: bold; }
 
-    .section-box { margin: 10px 0; }
-    .section-title { font-size: 12px; font-weight: bold; margin-bottom: 6px; text-transform: uppercase; }
+    .section-box { margin: 12px 0; }
+    .section-title { font-size: 13px; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; }
 
-    .lines { border: 1px solid #999; padding: 10px; min-height: 70px; }
+    .lines { border: 1px solid #999; padding: 10px; min-height: 80px; }
     .line { border-bottom: 1px solid #000; height: 18px; margin-bottom: 6px; }
+
+    .page-break { page-break-before: always; }
 
     .footer-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      margin: 12px 0;
-      font-size: 12px;
+      margin: 15px 0;
+      font-size: 13px;
     }
 
     .footer-item { display: flex; gap: 10px; }
@@ -234,11 +244,11 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
-    .signature-block { text-align: center; font-size: 12px; }
-    .signature-space { border-top: 1px solid #000; height: 55px; margin-bottom: 6px; }
+    .signature-block { text-align: center; font-size: 13px; }
+    .signature-space { border-top: 1px solid #000; height: 60px; margin-bottom: 8px; }
     .signature-label { font-weight: bold; line-height: 1.3; }
 
     .info-box {
@@ -262,37 +272,31 @@
       margin-top: 8px;
       width: 100%;
     }
+    .btn-link-copy:hover { background-color: #0052a3; }
 
-    /* ======= IMPRESSÃO TRAVADA EM 2 PÁGINAS ======= */
+    /* ======= IMPRESSÃO ======= */
     @media print {
       body { background: white; padding: 0; margin: 0; }
       .form-container { display: none !important; }
       .container { max-width: 100%; margin: 0; }
+
       .pages-container { margin: 0; padding: 0; }
 
-      /* cada doc-page = 1 página */
-      .doc-page {
-        border: none;
-        padding: 10mm;
-        margin: 0;
-        width: 210mm;
-        height: 297mm;
-        min-height: auto;
-        page-break-after: always;
-        page-break-inside: avoid;
-        overflow: hidden; /* impede “vazar” e criar 3ª página */
-      }
-
-      /* última página não precisa forçar mais uma página */
+      /* força 2 páginas certinhas */
+      .doc-page { border: none; margin: 0; max-width: 100%; min-height: auto; page-break-after: always; }
       .doc-page:last-child { page-break-after: auto; }
 
-      /* reduz elementos que empurram conteúdo */
-      .etiqueta-space { height: 300px; margin: 10px auto; }
-      .doc-important { font-size: 11px; padding: 10px; }
-      .doc-important li { margin: 1px 0; }
-      .doc-important ul { margin-left: 14px; }
+      /* IMPORTANTÍSSIMO: não deixar a etiqueta sumir */
+      #etiquetaImg {
+        display: block !important;
+        visibility: visible !important;
+      }
+      #etiquetaPlaceholder {
+        visibility: visible !important;
+      }
 
-      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      /* evita quebras esquisitas dentro da página */
+      .declaration-box, .doc-important, .section-box { break-inside: avoid; }
     }
   </style>
 </head>
@@ -303,7 +307,7 @@
     <!-- FORMULÁRIO -->
     <div class="form-container">
       <img class="logo-main" src="logo-azulcargo.png" alt="Azul Cargo Express"
-        onerror="this.style.display='none'; alert('Logo não carregou. Verifique se o arquivo está na raiz do repo e se o nome é exatamente: logo-azulcargo.png');" />
+           onerror="this.style.display='none'; alert('Logo não carregou. Verifique se o arquivo está na raiz do repo e se o nome é exatamente: logo-azulcargo.png');" />
 
       <h1>📋 Gerador de Acareação Azul Cargo</h1>
 
@@ -362,7 +366,7 @@
 
         <div class="upload-section">
           <label>Foto da Etiqueta (Opcional)</label>
-          <input type="file" id="fileInput" accept="image/*" />
+          <input type="file" id="fileInput" accept="image/*,.pdf" />
           <div class="upload-btn" onclick="document.getElementById('fileInput').click()">📷 Selecionar Etiqueta</div>
 
           <div class="image-preview" id="imagePreview">
@@ -372,7 +376,7 @@
 
         <div class="button-group">
           <button type="submit" class="btn-generate">✓ Gerar Documento</button>
-          <button type="button" class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
+          <button type="button" class="btn-print" id="btnPrint">🖨️ Imprimir</button>
           <button type="reset" class="btn-clear">🔄 Limpar</button>
         </div>
       </form>
@@ -395,12 +399,12 @@
           ACAREAÇÃO
         </div>
 
-        <div style="text-align:center; margin:10px 0; font-weight:bold; font-size:14px;">
+        <div style="text-align:center; margin:12px 0; font-weight:bold; font-size:14px;">
           ENTREGADOR: <span id="doc-entregador-p1"></span>
         </div>
 
-        <div style="font-size:12px; margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:8px;">
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="font-size:12px; margin-bottom:12px; border-bottom:1px solid #ddd; padding-bottom:8px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
             <div><strong>Data Entrega:</strong> <span id="doc-dataEntrega-p1"></span></div>
             <div><strong>Data Solicitação:</strong> <span id="doc-dataSolicitacao-p1"></span></div>
             <div><strong>Data Limite:</strong> <span id="doc-dataLimite-p1"></span></div>
@@ -408,13 +412,13 @@
           </div>
         </div>
 
-        <div class="etiqueta-space">
+        <div class="etiqueta-space" style="margin: 15px auto; width: 280px; height: 350px;">
           <img id="etiquetaImg" src="" alt="Etiqueta" style="display:none;" />
           <span id="etiquetaPlaceholder">Etiqueta</span>
         </div>
 
-        <div class="doc-important">
-          <h3>INFORMAÇÕES IMPORTANTES:</h3>
+        <div class="doc-important" style="margin-top:20px; font-size:12px; line-height:1.5;">
+          <h3 style="font-size:13px;">INFORMAÇÕES IMPORTANTES:</h3>
           <ul>
             <li>Quando o motivo for "CLIENTE DESCONHECE O RECEBIMENTO", somente o entregador que realizou a entrega poderá realizar a acareação.</li>
             <li>Na ausência de pessoas no local, OBRIGATÓRIA foto do local no WhatsApp.</li>
@@ -424,7 +428,7 @@
       </div>
 
       <!-- PÁGINA 2 -->
-      <div class="doc-page">
+      <div class="doc-page page-break">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express" />
         </div>
@@ -433,11 +437,11 @@
           ACAREAÇÃO
         </div>
 
-        <div style="text-align:center; margin-bottom:10px; font-weight:bold; font-size:14px;">
+        <div style="text-align:center; margin-bottom:12px; font-weight:bold; font-size:14px;">
           ENTREGADOR: <span id="doc-entregador-p2"></span>
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:12px; margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:8px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; font-size:12px; margin-bottom:12px; border-bottom:1px solid #ddd; padding-bottom:8px;">
           <div><strong>Data Entrega:</strong> <span id="doc-dataEntrega-p2"></span></div>
           <div><strong>Data Solicitação:</strong> <span id="doc-dataSolicitacao-p2"></span></div>
           <div><strong>Data Limite:</strong> <span id="doc-dataLimite-p2"></span></div>
@@ -447,10 +451,11 @@
         <div class="declaration-box">
           <div class="declaration-title">ACAREAÇÃO</div>
 
-          <div class="declaration-text" style="font-family: 'Courier New', monospace; font-size: 13px;">
-            Eu, _________________________________________________,
-            portador(a) do documento RG/CPF nº ________________________________,
-            grau de parentesco com destinatário ________________________________,
+          <!-- Texto com “espaço grande” para escrever à caneta -->
+          <div class="declaration-text">
+            Eu, _______________________________________________________________________________________
+            portador(a) do documento RG/CPF nº _________________________________________________________,
+            grau de parentesco com destinatário ________________________________________________________,
             declaro informações referente ao CTE <span id="doc-cte2"></span> (Campos de preenchimento obrigatório):
           </div>
 
@@ -517,31 +522,56 @@
             <div class="signature-label">Nome/Assinatura do entregador<br><span id="doc-assinatura"></span></div>
           </div>
         </div>
-
       </div>
+
     </div>
   </div>
 
   <script>
+    const fileInput = document.getElementById('fileInput');
+    const previewImg = document.getElementById('previewImg');
+    const imagePreview = document.getElementById('imagePreview');
+
+    const etiquetaImg = document.getElementById('etiquetaImg');
+    const etiquetaPlaceholder = document.getElementById('etiquetaPlaceholder');
+
+    let etiquetaCarregadaOK = false;
+
     // Upload etiqueta
-    document.getElementById('fileInput').addEventListener('change', function(e) {
+    fileInput.addEventListener('change', function(e) {
       const file = e.target.files[0];
+      etiquetaCarregadaOK = false;
+
       if (!file) return;
 
-      if (!file.type.startsWith('image/')) {
-        alert('Selecione uma IMAGEM (JPG/PNG). PDF não aparece como imagem.');
-        e.target.value = '';
+      // Se escolher PDF, não tem como mostrar como imagem sem conversão.
+      // (A gente pode fazer depois, mas por agora: avisa e não tenta imprimir etiqueta vazia.)
+      if (file.type === 'application/pdf') {
+        alert('Você selecionou um PDF. Para a etiqueta aparecer e imprimir, selecione uma IMAGEM (JPG/PNG).');
+        fileInput.value = '';
+        previewImg.src = '';
+        imagePreview.style.display = 'none';
+        etiquetaImg.src = '';
+        etiquetaImg.style.display = 'none';
+        etiquetaPlaceholder.style.display = 'inline';
         return;
       }
 
       const reader = new FileReader();
       reader.onload = function(event) {
-        document.getElementById('previewImg').src = event.target.result;
-        document.getElementById('imagePreview').style.display = 'block';
+        const dataUrl = event.target.result;
 
-        document.getElementById('etiquetaImg').src = event.target.result;
-        document.getElementById('etiquetaImg').style.display = 'block';
-        document.getElementById('etiquetaPlaceholder').style.display = 'none';
+        // preview
+        previewImg.src = dataUrl;
+        imagePreview.style.display = 'block';
+
+        // etiqueta na página 1
+        etiquetaImg.onload = () => { etiquetaCarregadaOK = true; };
+        etiquetaImg.onerror = () => { etiquetaCarregadaOK = false; };
+
+        etiquetaImg.src = dataUrl;
+        etiquetaImg.style.display = 'block';
+        etiquetaPlaceholder.style.display = 'none';
       };
       reader.readAsDataURL(file);
     });
@@ -552,6 +582,7 @@
       return data.toLocaleDateString('pt-BR');
     }
 
+    // Link sem "data"
     function gerarLink() {
       const entregador = document.getElementById('entregador').value;
       const motivo = document.getElementById('motivo').value;
@@ -582,6 +613,43 @@
         document.getElementById('dataLimite').value = params.get('dataLimite') || '';
       }
     }
+
+    // Impressão: espera a etiqueta carregar antes de imprimir (resolve “sumir na impressão”)
+    async function imprimirComEtiqueta() {
+      // se tem imagem de etiqueta, garante que ela está carregada
+      if (etiquetaImg && etiquetaImg.src && etiquetaImg.src.trim() !== "") {
+        etiquetaImg.style.display = 'block';
+        etiquetaPlaceholder.style.display = 'none';
+
+        try {
+          // espera carregar se ainda não carregou
+          if (!etiquetaImg.complete || !etiquetaCarregadaOK) {
+            await new Promise((resolve, reject) => {
+              const ok = () => resolve();
+              const fail = () => reject(new Error("Falha ao carregar etiqueta"));
+              etiquetaImg.onload = ok;
+              etiquetaImg.onerror = fail;
+            });
+          }
+
+          // melhora no Chrome/Edge quando disponível
+          if (etiquetaImg.decode) {
+            try { await etiquetaImg.decode(); } catch(e) {}
+          }
+        } catch (e) {
+          // fallback: imprime com placeholder
+          etiquetaPlaceholder.style.display = 'inline';
+        }
+      } else {
+        // sem etiqueta, mostra placeholder
+        etiquetaPlaceholder.style.display = 'inline';
+      }
+
+      // pausa curta para renderizar antes do print
+      setTimeout(() => window.print(), 150);
+    }
+
+    document.getElementById('btnPrint').addEventListener('click', imprimirComEtiqueta);
 
     document.getElementById('form').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -622,4 +690,5 @@
   </script>
 </body>
 </html>
+
 
