@@ -192,6 +192,21 @@
 
     .declaration-text { text-align: justify; margin-bottom: 10px; }
 
+    /* ✅ NOVO: LINHAS GRANDES PARA ESCREVER À CANETA */
+    .linha-grande {
+      border-bottom: 1px solid #000;
+      width: 100%;
+      height: 30px;
+      margin: 6px 0 12px 0;
+    }
+
+    .linha-media {
+      border-bottom: 1px solid #000;
+      width: 85%;
+      height: 28px;
+      margin: 6px 0 12px 0;
+    }
+
     .checklist-items {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -290,7 +305,6 @@
 
     <!-- FORMULÁRIO -->
     <div class="form-container">
-      <!-- Logo do repo -->
       <img class="logo-main" src="logo-azulcargo.png" alt="Azul Cargo Express"
            onerror="this.style.display='none'; alert('Logo não carregou. Verifique se o arquivo está na raiz do repo e se o nome é exatamente: logo-azulcargo.png');" />
 
@@ -303,7 +317,6 @@
             <input type="text" id="entregador" placeholder="Ex: CAIQUE TORRES DA SILVA" required />
           </div>
 
-          <!-- AQUI: campo Data removido (não existe mais) -->
           <div></div>
         </div>
 
@@ -438,8 +451,19 @@
         <div class="declaration-box">
           <div class="declaration-title">ACAREAÇÃO</div>
 
+          <!-- ✅ AJUSTADO: CAMPOS LONGOS PARA ESCREVER À CANETA -->
           <div class="declaration-text">
-            Eu, ___________________ portador(a) do documento RG/CPF nº ______, grau de parentesco com destinatário _____, declaro informações referente ao CTE <span id="doc-cte2"></span> (Campos de preenchimento obrigatório):
+            Eu,
+            <div class="linha-grande"></div>
+
+            portador(a) do documento RG/CPF nº
+            <div class="linha-media"></div>
+
+            grau de parentesco com destinatário
+            <div class="linha-media"></div>
+
+            declaro informações referente ao CTE <strong><span id="doc-cte2"></span></strong>
+            (Campos de preenchimento obrigatório):
           </div>
 
           <div class="checklist-items">
