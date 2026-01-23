@@ -158,7 +158,6 @@
       overflow: hidden;
       flex-shrink: 0;
     }
-
     .etiqueta-space img { max-width: 100%; max-height: 100%; }
 
     .doc-important {
@@ -169,7 +168,6 @@
       font-size: 13px;
       line-height: 1.5;
     }
-
     .doc-important h3 { margin: 0 0 8px 0; font-size: 14px; font-weight: bold; }
     .doc-important ul { margin-left: 15px; margin: 0; }
     .doc-important li { margin: 2px 0; }
@@ -192,20 +190,17 @@
 
     .declaration-text { text-align: justify; margin-bottom: 10px; }
 
-    /* ✅ NOVO: LINHAS GRANDES PARA ESCREVER À CANETA */
-    .linha-grande {
+    /* ====== LINHAS MAIORES (pra escrever de caneta) ====== */
+    .line-fill{
+      display:inline-block;
       border-bottom: 1px solid #000;
-      width: 100%;
-      height: 30px;
-      margin: 6px 0 12px 0;
+      height: 16px;
+      vertical-align: baseline;
+      transform: translateY(-2px);
     }
-
-    .linha-media {
-      border-bottom: 1px solid #000;
-      width: 85%;
-      height: 28px;
-      margin: 6px 0 12px 0;
-    }
+    .line-name{ width: 320px; }
+    .line-doc{  width: 220px; }
+    .line-par{  width: 250px; }
 
     .checklist-items {
       display: grid;
@@ -290,12 +285,51 @@
     }
     .btn-link-copy:hover { background-color: #0052a3; }
 
+    /* ====== IMPRESSÃO: 1 FOLHA (SÓ A PÁGINA 2) ======
+       - Mantém o layout online igual
+       - Na impressão, esconde a PÁGINA 1 e imprime só a PÁGINA 2 em 1 folha A4
+    */
     @media print {
+      @page { size: A4; margin: 10mm; }
+
       body { background: white; padding: 0; margin: 0; }
       .form-container { display: none !important; }
       .container { max-width: 100%; margin: 0; }
-      .doc-page { border: none; padding: 15px; margin: 0; max-width: 100%; page-break-after: auto; page-break-inside: avoid; min-height: auto; }
+
       .pages-container { margin: 0; padding: 0; }
+
+      /* ESconde PÁGINA 1 na impressão */
+      .pages-container .doc-page:first-child { display: none !important; }
+
+      /* Força a PÁGINA 2 caber em 1 folha */
+      .doc-page {
+        border: none !important;
+        padding: 8mm !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        font-size: 12px !important;
+        line-height: 1.25 !important;
+        page-break-after: auto !important;
+        page-break-inside: avoid !important;
+      }
+
+      /* Remove quebra manual */
+      .page-break { page-break-before: auto !important; break-before: auto !important; }
+
+      /* Ajustes finos pra caber melhor */
+      .logo-header img { max-width: 160px !important; }
+      .declaration-box { margin: 10px 0 !important; padding: 10px !important; }
+      .checklist-item { padding: 8px !important; }
+      .lines { min-height: 60px !important; }
+      .signature-space { height: 45px !important; }
+
+      /* Evita quebrar blocos */
+      .declaration-box,
+      .checklist-items,
+      .section-box,
+      .footer-section,
+      .signature-section { break-inside: avoid-page !important; }
     }
   </style>
 </head>
@@ -316,7 +350,6 @@
             <label for="entregador">Nome do Entregador *</label>
             <input type="text" id="entregador" placeholder="Ex: CAIQUE TORRES DA SILVA" required />
           </div>
-
           <div></div>
         </div>
 
@@ -382,14 +415,14 @@
       </form>
 
       <div class="info-box">
-        ℹ️ <strong>Dica:</strong> Preencha os campos obrigatórios, adicione a etiqueta e clique em "Gerar Documento".
+        ℹ️ <strong>Dica:</strong> Ao imprimir, vai sair <strong>somente a página da declaração</strong> em <strong>1 folha</strong>.
       </div>
     </div>
 
-    <!-- DOCUMENTOS GERADOS (2 PÁGINAS) -->
+    <!-- DOCUMENTOS GERADOS (2 PÁGINAS NA TELA) -->
     <div class="pages-container" id="pagesContainer">
 
-      <!-- PÁGINA 1 -->
+      <!-- PÁGINA 1 (TELA) -->
       <div class="doc-page">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express" />
@@ -427,7 +460,7 @@
         </div>
       </div>
 
-      <!-- PÁGINA 2 -->
+      <!-- PÁGINA 2 (DECLARAÇÃO) -->
       <div class="doc-page page-break">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express" />
@@ -451,19 +484,12 @@
         <div class="declaration-box">
           <div class="declaration-title">ACAREAÇÃO</div>
 
-          <!-- ✅ AJUSTADO: CAMPOS LONGOS PARA ESCREVER À CANETA -->
+          <!-- AQUI: espaços GRANDES e com linha para caneta -->
           <div class="declaration-text">
-            Eu,
-            <div class="linha-grande"></div>
-
-            portador(a) do documento RG/CPF nº
-            <div class="linha-media"></div>
-
-            grau de parentesco com destinatário
-            <div class="linha-media"></div>
-
-            declaro informações referente ao CTE <strong><span id="doc-cte2"></span></strong>
-            (Campos de preenchimento obrigatório):
+            Eu, <span class="line-fill line-name"></span>
+            portador(a) do documento RG/CPF nº <span class="line-fill line-doc"></span>,
+            grau de parentesco com destinatário <span class="line-fill line-par"></span>,
+            declaro informações referente ao CTE <span id="doc-cte2"></span> (Campos de preenchimento obrigatório):
           </div>
 
           <div class="checklist-items">
@@ -530,7 +556,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -568,12 +593,7 @@
       const dataLimite = document.getElementById('dataLimite').value;
 
       const params = new URLSearchParams({
-        entregador,
-        motivo,
-        cte,
-        dataEntrega,
-        dataSolicitacao,
-        dataLimite
+        entregador, motivo, cte, dataEntrega, dataSolicitacao, dataLimite
       });
 
       return window.location.origin + window.location.pathname + '?' + params.toString();
@@ -581,9 +601,9 @@
 
     function copiarLink() {
       const link = gerarLink();
-      navigator.clipboard.writeText(link).then(() => {
-        alert('Link copiado para a área de transferência!');
-      }).catch(err => console.error('Erro ao copiar:', err));
+      navigator.clipboard.writeText(link)
+        .then(() => alert('Link copiado para a área de transferência!'))
+        .catch(err => console.error('Erro ao copiar:', err));
     }
 
     function carregarParametrosURL() {
@@ -637,3 +657,4 @@
   </script>
 </body>
 </html>
+
