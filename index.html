@@ -43,7 +43,7 @@ h1 {
 
 label { font-weight:bold; font-size:14px; }
 
-input {
+input, select {
   width:100%;
   padding:10px;
   border:1px solid #ccc;
@@ -59,8 +59,8 @@ button {
   cursor:pointer;
 }
 
-.btn-generate { background:#0066cc; color:#fff; width:100%; }
-.btn-pdf { background:#28a745; color:#fff; display:none; margin-top:10px; width:100%; }
+.btn-generate { background:#0066cc; color:#fff; }
+.btn-print { background:#28a745; color:#fff; display:none; margin-top:10px; }
 
 .pages-container { display:none; }
 
@@ -103,6 +103,11 @@ button {
   justify-content:center;
 }
 
+.etiqueta-space img {
+  max-width:100%;
+  max-height:100%;
+}
+
 /* Caixa declaração */
 .declaration-box {
   border:2px solid #000;
@@ -134,50 +139,14 @@ button {
   font-size:12px;
 }
 
-/* ======== WHATSAPP ======== */
-.whats-box{
-  margin-top:15px;
-  padding:12px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  background:#fafafa;
-  display:none;
-}
-
-.whats-box h2{
-  font-size:14px;
-  margin-bottom:8px;
-  color:#333;
-}
-
-.whats-box textarea{
-  width:100%;
-  min-height:90px;
-  padding:10px;
-  border:1px solid #ccc;
-  border-radius:4px;
-  resize:vertical;
-  font-family:Arial, sans-serif;
-  font-size:13px;
-}
-
-.whats-actions{
-  display:flex;
-  gap:10px;
-  margin-top:10px;
-}
-
-.btn-copy{ background:#6c757d; color:#fff; flex:1; }
-.btn-openwa{ background:#25D366; color:#fff; flex:1; }
-
 /* ================= IMPRESSÃO ================= */
 @media print {
   body { background:#fff; padding:0; }
   .form-container { display:none; }
-  .pages-container { display:block !important; }
+  .pages-container { display:block; }
 
   .logo-header img {
-    max-width:140px;
+    max-width:140px; /* LOGO COMUM */
   }
 
   .page-break {
@@ -193,7 +162,7 @@ button {
 
   <!-- FORMULÁRIO -->
   <div class="form-container">
-    <img src="logo-azulcargo.png" class="logo-main" alt="Logo Azul Cargo">
+    <img src="logo-azulcargo.png" class="logo-main">
     <h1>Gerador de Acareação Azul Cargo</h1>
 
     <div class="form-row">
@@ -208,21 +177,7 @@ button {
     </div>
 
     <button class="btn-generate" onclick="gerar()">Gerar Documento</button>
-
-    <!-- Botão PDF (abre impressão / salvar como PDF) -->
-    <button class="btn-pdf" id="btnPDF" onclick="baixarPDF()">✅ Baixar PDF (abre impressão / salvar como PDF)</button>
-
-    <!-- WhatsApp -->
-    <div class="whats-box" id="whatsBox">
-      <h2>Mensagem WhatsApp (gerada automaticamente)</h2>
-      <textarea id="whatsMsg" readonly></textarea>
-
-      <div class="whats-actions">
-        <button class="btn-copy" onclick="copiarMensagem()">📋 Copiar Mensagem</button>
-        <button class="btn-openwa" onclick="abrirWhatsAppWeb()">🟢 Abrir WhatsApp Web</button>
-      </div>
-    </div>
-
+    <button class="btn-print" id="btnPrint" onclick="window.print()">Imprimir</button>
   </div>
 
   <!-- DOCUMENTOS -->
@@ -231,7 +186,7 @@ button {
     <!-- PÁGINA 1 -->
     <div class="doc-page">
       <div class="logo-header">
-        <img src="logo-azulcargo.png" alt="Logo Azul Cargo">
+        <img src="logo-azulcargo.png">
       </div>
 
       <div class="doc-title">ACAREAÇÃO</div>
@@ -247,7 +202,7 @@ button {
     <!-- PÁGINA 2 -->
     <div class="doc-page page-break">
       <div class="logo-header">
-        <img src="logo-azulcargo.png" alt="Logo Azul Cargo">
+        <img src="logo-azulcargo.png">
       </div>
 
       <div class="doc-title">ACAREAÇÃO</div>
@@ -277,49 +232,20 @@ button {
 
 <script>
 function gerar() {
-  const entregador = (document.getElementById('entregador').value || '').trim().toUpperCase();
-  const cte = (document.getElementById('cte').value || '').trim();
+  document.getElementById('doc-entregador').textContent =
+    document.getElementById('entregador').value.toUpperCase();
 
-  document.getElementById('doc-entregador').textContent = entregador;
-  document.getElementById('doc-cte').textContent = cte;
-  document.getElementById('doc-cte2').textContent = cte;
+  document.getElementById('doc-cte').textContent =
+    document.getElementById('cte').value;
+
+  document.getElementById('doc-cte2').textContent =
+    document.getElementById('cte').value;
 
   document.getElementById('docs').style.display = 'block';
-  document.getElementById('btnPDF').style.display = 'block';
-
-  // Mensagem WhatsApp automática
-  const msg =
-`Olá! Segue em anexo o documento de ACAREAÇÃO.
-CTE: ${cte}
-Entregador: ${entregador}
-
-Por favor, preencher e devolver assinado.`;
-
-  document.getElementById('whatsMsg').value = msg;
-  document.getElementById('whatsBox').style.display = 'block';
-}
-
-function baixarPDF() {
-  // garante que o conteúdo está visível antes da impressão
-  document.getElementById('docs').style.display = 'block';
-  window.print();
-}
-
-function copiarMensagem() {
-  const txt = document.getElementById('whatsMsg').value;
-  navigator.clipboard.writeText(txt).then(() => {
-    alert("Mensagem copiada!");
-  }).catch(() => {
-    alert("Não consegui copiar automaticamente. Copie manualmente.");
-  });
-}
-
-function abrirWhatsAppWeb() {
-  const txt = document.getElementById('whatsMsg').value;
-  const url = "https://web.whatsapp.com/send?text=" + encodeURIComponent(txt);
-  window.open(url, "_blank");
+  document.getElementById('btnPrint').style.display = 'block';
 }
 </script>
 
 </body>
 </html>
+
