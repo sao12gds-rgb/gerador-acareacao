@@ -8,12 +8,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      padding: 20px;
-    }
-
+    body { font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px; }
     .container { max-width: 900px; margin: 0 auto; }
 
     .form-container {
@@ -24,79 +19,49 @@
       margin-bottom: 30px;
     }
 
-    .form-container h1 {
-      color: #0066cc;
-      font-size: 24px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+    .form-container h1 { color: #0066cc; font-size: 24px; margin-bottom: 16px; text-align: center; }
 
-    .logo-main {
-      width: 240px;
-      height: auto;
-      display: block;
-      margin: 0 auto 12px auto;
-    }
+    .logo-main { width: 240px; height: auto; display: block; margin: 0 auto 12px auto; }
 
     .form-group { margin-bottom: 20px; }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-      color: #333;
-      font-size: 14px;
+    .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; font-size: 14px; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px;
+      font-size: 14px; font-family: Arial, sans-serif;
     }
 
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 14px;
-      font-family: Arial, sans-serif;
-    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: #0066cc;
-      box-shadow: 0 0 5px rgba(0,102,204,0.3);
-    }
-
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 30px;
-    }
-
+    .button-group { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
     button {
       flex: 1;
+      min-width: 170px;
       padding: 14px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       border: none;
       border-radius: 4px;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.2s;
     }
 
     .btn-generate { background-color: #0066cc; color: white; }
     .btn-generate:hover { background-color: #0052a3; }
 
     .btn-print { background-color: #28a745; color: white; display: none; }
-    .btn-print.visible { display: flex; }
+    .btn-print.visible { display: inline-flex; justify-content: center; align-items: center; }
     .btn-print:hover { background-color: #218838; }
 
     .btn-clear { background-color: #6c757d; color: white; }
     .btn-clear:hover { background-color: #5a6268; }
+
+    .btn-pdf { background-color: #111827; color: white; display: none; }
+    .btn-pdf.visible { display: inline-flex; justify-content: center; align-items: center; }
+    .btn-pdf:hover { background-color: #0b1220; }
+
+    .btn-whats { background-color: #25D366; color: white; display: none; }
+    .btn-whats.visible { display: inline-flex; justify-content: center; align-items: center; }
+    .btn-whats:hover { background-color: #1fa955; }
 
     .upload-section {
       margin-top: 20px;
@@ -105,7 +70,6 @@
       border: 1px dashed #0066cc;
       border-radius: 4px;
     }
-
     .upload-section label { color: #0066cc; }
     #fileInput { display: none; }
 
@@ -125,9 +89,43 @@
     .image-preview { margin-top: 15px; display: none; }
     .image-preview img { max-width: 300px; border: 1px solid #ddd; border-radius: 4px; }
 
+    .info-box {
+      background: #e7f3ff;
+      border-left: 4px solid #0066cc;
+      padding: 12px;
+      margin: 15px 0 0 0;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #004085;
+    }
+
+    .whats-box {
+      display: none;
+      margin-top: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 12px;
+      background: #fafafa;
+    }
+    .whats-box.visible { display: block; }
+    .whats-box .title { font-weight: bold; margin-bottom: 6px; }
+    .whats-box textarea {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+    }
+    .whats-actions { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+    .whats-actions button { min-width: 180px; }
+
     .pages-container { display: none; }
     .pages-container.visible { display: block; }
 
+    /* Documento */
     .doc-page {
       background: white;
       padding: 15px;
@@ -135,7 +133,6 @@
       max-width: 210mm;
       min-height: 297mm;
       border: 1px solid #999;
-      page-break-after: avoid;
       font-family: Arial, sans-serif;
       font-size: 15px;
       line-height: 1.6;
@@ -145,17 +142,12 @@
     .logo-header img { max-width: 200px; height: auto; }
 
     .etiqueta-space {
-      width: 220px;
-      height: 320px;
+      width: 220px; height: 320px;
       background-color: #fafafa;
       border: 2px solid #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #999;
-      text-align: center;
-      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: #999;
+      text-align: center; overflow: hidden;
       flex-shrink: 0;
     }
     .etiqueta-space img { max-width: 100%; max-height: 100%; }
@@ -168,10 +160,6 @@
       font-size: 13px;
       line-height: 1.5;
     }
-
-    .doc-important h3 { margin: 0 0 8px 0; font-size: 14px; font-weight: bold; }
-    .doc-important ul { margin-left: 15px; margin: 0; }
-    .doc-important li { margin: 2px 0; }
 
     .declaration-box {
       border: 2px solid #000;
@@ -191,7 +179,7 @@
 
     .declaration-text { text-align: justify; margin-bottom: 10px; }
 
-    /* Linhas maiores para preencher de caneta */
+    /* Linhas maiores p/ caneta */
     .fill-line {
       display: inline-block;
       border-bottom: 1px solid #000;
@@ -221,7 +209,6 @@
       align-items: center;
     }
 
-    .checklist-item label { margin: 0; font-weight: normal; }
     .checkbox-options { text-align: right; font-weight: bold; }
 
     .section-box { margin: 12px 0; }
@@ -230,7 +217,7 @@
     .lines { border: 1px solid #999; padding: 10px; min-height: 80px; }
     .line { border-bottom: 1px solid #000; height: 18px; margin-bottom: 6px; }
 
-    .page-break { page-break-before: always; page-break-inside: avoid; }
+    .page-break { page-break-before: always; break-before: page; }
 
     .footer-section {
       display: grid;
@@ -263,77 +250,35 @@
     .signature-space { border-top: 1px solid #000; height: 60px; margin-bottom: 8px; }
     .signature-label { font-weight: bold; line-height: 1.3; }
 
-    .info-box {
-      background: #e7f3ff;
-      border-left: 4px solid #0066cc;
-      padding: 12px;
-      margin: 15px 0;
-      border-radius: 4px;
-      font-size: 13px;
-      color: #004085;
-    }
-
-    .btn-link-copy {
-      background-color: #0066cc;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 13px;
-      margin-top: 8px;
-      width: 100%;
-    }
-    .btn-link-copy:hover { background-color: #0052a3; }
-
-    /* ✅ IMPRESSÃO: FORÇA AS 2 PÁGINAS (ETIQUETA + DECLARAÇÃO) */
+    /* IMPRESSÃO 2 páginas */
     @page { size: A4; margin: 10mm; }
 
     @media print {
       body { background: white; margin: 0; padding: 0; }
-
       .form-container { display: none !important; }
+      .pages-container { display: block !important; margin: 0 !important; padding: 0 !important; }
 
-      .pages-container {
-        display: block !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-
-      /* Cada doc-page vira uma folha */
       .doc-page {
-        display: block !important;
         border: none !important;
         margin: 0 !important;
-        padding: 0 !important;      /* controle via @page margin */
+        padding: 0 !important;
         width: 100% !important;
         min-height: auto !important;
         page-break-after: always;
         break-after: page;
       }
-      .doc-page:last-child {
-        page-break-after: auto;
-        break-after: auto;
-      }
+      .doc-page:last-child { page-break-after: auto; break-after: auto; }
 
-      /* Evita o navegador "engolir" a página da etiqueta */
-      .etiqueta-space,
-      #etiquetaImg,
-      #etiquetaPlaceholder {
+      .etiqueta-space, #etiquetaImg, #etiquetaPlaceholder {
         display: block !important;
         visibility: visible !important;
       }
 
-      /* Evita cortes no meio */
-      .declaration-box,
-      .doc-important,
-      .section-box,
-      .signature-section {
+      .declaration-box, .doc-important, .section-box, .signature-section {
         page-break-inside: avoid;
         break-inside: avoid;
       }
 
-      /* Algumas engines escondem imagens com overflow/transform */
       img { max-width: 100% !important; }
     }
   </style>
@@ -345,7 +290,7 @@
     <!-- FORMULÁRIO -->
     <div class="form-container">
       <img class="logo-main" src="logo-azulcargo.png" alt="Azul Cargo Express"
-           onerror="this.style.display='none'; alert('Logo não carregou. Verifique se o arquivo está na raiz do repo e se o nome é exatamente: logo-azulcargo.png');" />
+           onerror="this.style.display='none'; alert('Logo não carregou. Verifique se o arquivo está na raiz e com o nome exato: logo-azulcargo.png');" />
 
       <h1>📋 Gerador de Acareação Azul Cargo</h1>
 
@@ -355,8 +300,6 @@
             <label for="entregador">Nome do Entregador *</label>
             <input type="text" id="entregador" placeholder="Ex: CAIQUE TORRES DA SILVA" required />
           </div>
-
-          <!-- Campo Data removido -->
           <div></div>
         </div>
 
@@ -398,9 +341,8 @@
           </div>
 
           <div class="form-group">
-            <label for="linkCompartilhamento">Link para Compartilhamento</label>
-            <input type="text" id="linkCompartilhamento" readonly placeholder="Clique para copiar" />
-            <button type="button" class="btn-link-copy" onclick="copiarLink()">📋 Copiar Link</button>
+            <label for="numeroWhats">WhatsApp (opcional)</label>
+            <input type="text" id="numeroWhats" placeholder="Ex: 5511999999999 (somente números)" />
           </div>
         </div>
 
@@ -416,13 +358,23 @@
 
         <div class="button-group">
           <button type="submit" class="btn-generate">✓ Gerar Documento</button>
-          <button type="button" class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
+          <button type="button" class="btn-print" id="btnPrint" onclick="window.print()">🖨️ Imprimir</button>
+          <button type="button" class="btn-pdf" id="btnPDF">⬇️ Baixar PDF</button>
+          <button type="button" class="btn-whats" id="btnWhats">📲 Abrir WhatsApp</button>
           <button type="reset" class="btn-clear">🔄 Limpar</button>
         </div>
       </form>
 
+      <div class="whats-box" id="whatsBox">
+        <div class="title">Mensagem pronta (WhatsApp)</div>
+        <textarea id="whatsMsg" readonly></textarea>
+        <div class="whats-actions">
+          <button type="button" class="btn-pdf visible" id="btnCopyMsg">📋 Copiar Mensagem</button>
+        </div>
+      </div>
+
       <div class="info-box">
-        ℹ️ <strong>Dica:</strong> Ao imprimir, devem sair <strong>2 páginas</strong>: (1) Etiqueta e (2) Declaração.
+        ℹ️ <strong>Fluxo:</strong> Gere o documento → baixe o PDF → abra o WhatsApp com a mensagem pronta → anexe o PDF e envie.
       </div>
     </div>
 
@@ -430,7 +382,7 @@
     <div class="pages-container" id="pagesContainer">
 
       <!-- PÁGINA 1 (ETIQUETA) -->
-      <div class="doc-page">
+      <div class="doc-page" id="page1">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express" />
         </div>
@@ -468,7 +420,7 @@
       </div>
 
       <!-- PÁGINA 2 (DECLARAÇÃO) -->
-      <div class="doc-page page-break">
+      <div class="doc-page page-break" id="page2">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express" />
         </div>
@@ -491,7 +443,6 @@
         <div class="declaration-box">
           <div class="declaration-title">ACAREAÇÃO</div>
 
-          <!-- ✅ Ajuste: linhas maiores para escrever de caneta -->
           <div class="declaration-text">
             Eu,<span class="fill-line fill-name"></span>
             portador(a) do documento RG/CPF nº<span class="fill-line fill-doc"></span>,
@@ -567,22 +518,35 @@
     </div>
   </div>
 
+  <!-- html2pdf (gera PDF no navegador) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+          integrity="sha512-YcsIPGdhPK4P6EJqfFW7Iu1cZxQ1h2CqRr8l7JqfV2uQdZ8xKxqg1pQmBqkM0K0nQp3o0p2lT7S2d4qz2dJ2g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <script>
-    // Upload etiqueta (vira DataURL -> imprime sim)
+    const pagesContainer = document.getElementById('pagesContainer');
+    const btnPrint = document.getElementById('btnPrint');
+    const btnPDF = document.getElementById('btnPDF');
+    const btnWhats = document.getElementById('btnWhats');
+    const whatsBox = document.getElementById('whatsBox');
+    const whatsMsg = document.getElementById('whatsMsg');
+    const btnCopyMsg = document.getElementById('btnCopyMsg');
+
+    // Upload etiqueta (DataURL)
     document.getElementById('fileInput').addEventListener('change', function(e) {
       const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-          document.getElementById('previewImg').src = event.target.result;
-          document.getElementById('imagePreview').style.display = 'block';
+      if (!file) return;
 
-          document.getElementById('etiquetaImg').src = event.target.result;
-          document.getElementById('etiquetaImg').style.display = 'block';
-          document.getElementById('etiquetaPlaceholder').style.display = 'none';
-        };
-        reader.readAsDataURL(file);
-      }
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        document.getElementById('previewImg').src = event.target.result;
+        document.getElementById('imagePreview').style.display = 'block';
+
+        document.getElementById('etiquetaImg').src = event.target.result;
+        document.getElementById('etiquetaImg').style.display = 'block';
+        document.getElementById('etiquetaPlaceholder').style.display = 'none';
+      };
+      reader.readAsDataURL(file);
     });
 
     function formatarData(dataString) {
@@ -591,39 +555,58 @@
       return data.toLocaleDateString('pt-BR');
     }
 
-    // Link sem "data"
-    function gerarLink() {
-      const entregador = document.getElementById('entregador').value;
-      const motivo = document.getElementById('motivo').value;
-      const cte = document.getElementById('cte').value;
-      const dataEntrega = document.getElementById('dataEntrega').value;
-      const dataSolicitacao = document.getElementById('dataSolicitacao').value;
-      const dataLimite = document.getElementById('dataLimite').value;
+    function montarMensagemWhats({ entregador, cte, motivo, dataEntrega, dataSolicitacao, dataLimite }) {
+      // ✅ Ajuste o texto aqui do jeitinho que vocês usam
+      return (
+`Olá! Tudo bem?
 
-      const params = new URLSearchParams({
-        entregador, motivo, cte, dataEntrega, dataSolicitacao, dataLimite
-      });
+Segue em anexo o documento de ACAREAÇÃO.
 
-      return window.location.origin + window.location.pathname + '?' + params.toString();
+• CTE: ${cte}
+• Motivo: ${motivo}
+• Entregador: ${entregador}
+• Data Entrega: ${dataEntrega}
+• Data Solicitação: ${dataSolicitacao}
+• Data Limite: ${dataLimite}
+
+Por gentileza, confirmar o recebimento e nos retornar após o preenchimento.`
+      );
     }
 
-    function copiarLink() {
-      const link = gerarLink();
-      navigator.clipboard.writeText(link)
-        .then(() => alert('Link copiado para a área de transferência!'))
-        .catch(err => console.error('Erro ao copiar:', err));
+    function abrirWhatsApp(mensagem) {
+      const numero = (document.getElementById('numeroWhats').value || '').replace(/\D/g,'').trim();
+      const base = numero ? `https://wa.me/${numero}` : `https://wa.me/`;
+      const url = `${base}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
     }
 
-    function carregarParametrosURL() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('entregador')) {
-        document.getElementById('entregador').value = decodeURIComponent(params.get('entregador') || '');
-        document.getElementById('motivo').value = params.get('motivo') || '';
-        document.getElementById('cte').value = params.get('cte') || '';
-        document.getElementById('dataEntrega').value = params.get('dataEntrega') || '';
-        document.getElementById('dataSolicitacao').value = params.get('dataSolicitacao') || '';
-        document.getElementById('dataLimite').value = params.get('dataLimite') || '';
+    async function copiarTexto(texto) {
+      try {
+        await navigator.clipboard.writeText(texto);
+        alert('Mensagem copiada!');
+      } catch (e) {
+        // fallback simples
+        const ta = document.createElement('textarea');
+        ta.value = texto;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Mensagem copiada!');
       }
+    }
+
+    // Gera PDF das 2 páginas
+    function baixarPDF(nomeArquivo) {
+      const opt = {
+        margin: 10,
+        filename: nomeArquivo,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, allowTaint: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'], before: '.page-break' }
+      };
+      return html2pdf().set(opt).from(pagesContainer).save();
     }
 
     document.getElementById('form').addEventListener('submit', function(e) {
@@ -637,6 +620,7 @@
       const dataSolicitacao = document.getElementById('dataSolicitacao').value;
       const dataLimite = document.getElementById('dataLimite').value;
 
+      // Preenche páginas
       document.getElementById('doc-entregador-p1').textContent = entregador;
       document.getElementById('doc-entregador-p2').textContent = entregador;
       document.getElementById('doc-motivo').textContent = motivo;
@@ -644,27 +628,50 @@
       document.getElementById('doc-cte2').textContent = cte;
       document.getElementById('doc-assinatura').textContent = entregador;
 
-      document.getElementById('doc-dataEntrega-p1').textContent = formatarData(dataEntrega);
-      document.getElementById('doc-dataEntrega-p2').textContent = formatarData(dataEntrega);
-      document.getElementById('doc-dataSolicitacao-p1').textContent = formatarData(dataSolicitacao);
-      document.getElementById('doc-dataSolicitacao-p2').textContent = formatarData(dataSolicitacao);
-      document.getElementById('doc-dataLimite-p1').textContent = formatarData(dataLimite);
-      document.getElementById('doc-dataLimite-p2').textContent = formatarData(dataLimite);
+      const fEntrega = formatarData(dataEntrega);
+      const fSolic = formatarData(dataSolicitacao);
+      const fLimite = formatarData(dataLimite);
 
-      document.getElementById('linkCompartilhamento').value = gerarLink();
+      document.getElementById('doc-dataEntrega-p1').textContent = fEntrega;
+      document.getElementById('doc-dataEntrega-p2').textContent = fEntrega;
+      document.getElementById('doc-dataSolicitacao-p1').textContent = fSolic;
+      document.getElementById('doc-dataSolicitacao-p2').textContent = fSolic;
+      document.getElementById('doc-dataLimite-p1').textContent = fLimite;
+      document.getElementById('doc-dataLimite-p2').textContent = fLimite;
 
-      document.getElementById('pagesContainer').classList.add('visible');
-      document.querySelector('.btn-print').classList.add('visible');
+      // Mostra páginas + botões
+      pagesContainer.classList.add('visible');
+      btnPrint.classList.add('visible');
+      btnPDF.classList.add('visible');
+      btnWhats.classList.add('visible');
+      whatsBox.classList.add('visible');
 
-      setTimeout(() => {
-        document.getElementById('pagesContainer').scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      // Monta mensagem
+      const msg = montarMensagemWhats({
+        entregador, cte, motivo,
+        dataEntrega: fEntrega, dataSolicitacao: fSolic, dataLimite: fLimite
+      });
+      whatsMsg.value = msg;
+
+      setTimeout(() => pagesContainer.scrollIntoView({ behavior: 'smooth' }), 100);
     });
 
-    carregarParametrosURL();
+    btnPDF.addEventListener('click', () => {
+      const cte = (document.getElementById('cte').value || 'CTE').toUpperCase();
+      baixarPDF(`ACAREACAO_${cte}.pdf`);
+    });
+
+    btnWhats.addEventListener('click', () => {
+      abrirWhatsApp(whatsMsg.value || '');
+    });
+
+    btnCopyMsg.addEventListener('click', () => {
+      copiarTexto(whatsMsg.value || '');
+    });
   </script>
 </body>
 </html>
+
 
 
 
