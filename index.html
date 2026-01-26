@@ -1,326 +1,575 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Gerador de Acareação - Azul Cargo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador de Acareação - Azul Cargo</title>
 
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: Arial, sans-serif; background:#f5f5f5; padding:20px; }
+    .container { max-width: 980px; margin:auto; }
 
-body {
-  font-family: Arial, sans-serif;
-  background:#f5f5f5;
-  padding:20px;
-}
+    .form-container{
+      background:#fff; padding:22px; border-radius:10px;
+      box-shadow:0 2px 10px rgba(0,0,0,.10);
+      margin-bottom:18px;
+    }
 
-.container { max-width:900px; margin:auto; }
+    .logo-main{
+      display:block; margin:0 auto 10px;
+      max-width: 220px;
+      height:auto;
+    }
 
-.form-container {
-  background:#fff;
-  padding:30px;
-  border-radius:8px;
-  box-shadow:0 2px 10px rgba(0,0,0,.1);
-}
+    h1{ text-align:center; color:#0b4aa2; margin-bottom:18px; font-size:22px; }
 
-.logo-main {
-  display:block;
-  margin:0 auto 10px;
-  max-width:220px;
-}
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:12px;
+    }
 
-h1 {
-  text-align:center;
-  color:#0066cc;
-  margin-bottom:20px;
-}
+    label{ font-weight:700; font-size:13px; display:block; margin-bottom:6px; color:#222; }
+    .req{ color:#c11; font-weight:700; }
 
-.form-row {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-  margin-bottom:15px;
-}
+    input, textarea{
+      width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;
+      font-family: Arial, sans-serif; font-size:14px;
+      background:#fff;
+    }
 
-label { font-weight:bold; font-size:14px; }
+    textarea{ min-height:120px; resize:vertical; }
 
-input {
-  width:100%;
-  padding:10px;
-  border:1px solid #ccc;
-  border-radius:4px;
-}
+    .small{
+      font-size:12px; color:#666; margin-top:6px; line-height:1.35;
+    }
 
-button {
-  padding:14px;
-  font-size:16px;
-  font-weight:bold;
-  border:none;
-  border-radius:4px;
-  cursor:pointer;
-}
+    .upload{
+      margin-top:10px; padding:12px;
+      background:#e7f3ff; border:1px dashed #0b4aa2; border-radius:8px;
+    }
+    .upload label{ color:#0b4aa2; margin-bottom:10px; }
+    #fileInput{ display:none; }
+    .upload-btn{
+      display:inline-block; background:#0b4aa2; color:#fff;
+      padding:10px 14px; border-radius:6px; cursor:pointer;
+      user-select:none; font-weight:700; font-size:14px;
+    }
+    .preview{ margin-top:10px; display:none; }
+    .preview img{ max-width: 320px; border:1px solid #ddd; border-radius:6px; }
 
-.btn-generate { background:#0066cc; color:#fff; width:100%; }
-.btn-pdf { background:#28a745; color:#fff; display:none; margin-top:10px; width:100%; }
+    .button-row{
+      display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;
+    }
 
-.pages-container { display:none; }
+    button{
+      padding:14px; font-size:15px; font-weight:800;
+      border:none; border-radius:8px; cursor:pointer;
+    }
 
-/* ================= DOCUMENTO ================= */
+    .btn-generate{ background:#0b4aa2; color:#fff; }
+    .btn-pdf{ background:#28a745; color:#fff; display:none; }
+    .btn-print{ background:#17a2b8; color:#fff; display:none; }
+    .btn-copy{ background:#6c757d; color:#fff; display:none; }
+    .btn-wa{ background:#25D366; color:#fff; display:none; }
 
-.doc-page {
-  width:210mm;
-  min-height:297mm;
-  padding:15mm;
-  background:#fff;
-}
+    .warn{
+      display:none;
+      margin-top:10px;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #f0c36d;
+      background:#fff7e6;
+      color:#7a4b00;
+      font-size:13px;
+      line-height:1.35;
+    }
 
-.logo-header {
-  text-align:center;
-  margin-bottom:8px;
-}
+    /* ================= DOCUMENTO (2 páginas) ================= */
+    .pages-container{ display:none; }
 
-.logo-header img {
-  max-width:160px;
-}
+    .doc-page{
+      width:210mm;
+      height:297mm;           /* A4 fixo */
+      padding:15mm;
+      background:#fff;
+      margin: 0 auto 0 auto;
+      overflow:hidden;        /* trava em 2 páginas */
+      position:relative;
+    }
 
-/* Títulos */
-.doc-title {
-  text-align:center;
-  font-weight:bold;
-  font-size:16px;
-  border-bottom:1px solid #000;
-  padding-bottom:6px;
-  margin-bottom:10px;
-}
+    .logo-header{ text-align:center; margin-bottom:6px; }
+    .logo-header img{ max-width:170px; height:auto; }
 
-/* Etiqueta */
-.etiqueta-space {
-  width:280px;
-  height:350px;
-  border:2px solid #000;
-  margin:15px auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+    .doc-title{
+      text-align:center; font-weight:900; font-size:16px;
+      border-bottom:1px solid #000; padding-bottom:6px;
+      margin-bottom:10px; letter-spacing:.5px;
+    }
 
-/* Caixa declaração */
-.declaration-box {
-  border:2px solid #000;
-  padding:12px;
-  font-size:13px;
-}
+    .doc-meta{
+      font-size:13px; margin-bottom:8px; line-height:1.4;
+    }
+    .doc-meta strong{ display:inline-block; min-width:100px; }
 
-/* Linhas longas */
-.long-line {
-  display:inline-block;
-  border-bottom:1px solid #000;
-  width:100%;
-  height:18px;
-  margin:6px 0;
-}
+    .etiqueta-space{
+      width: 90mm;
+      height: 110mm;
+      border:2px solid #000;
+      margin: 14px auto 10px auto;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden; font-weight:900; font-size:14px;
+      text-align:center; padding:6px;
+    }
+    .etiqueta-space img{
+      max-width:100%;
+      max-height:100%;
+      display:none;
+    }
 
-/* Assinaturas */
-.signature {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  margin-top:30px;
-  text-align:center;
-}
+    .diretrizes{
+      border:1px solid #000;
+      padding:10px;
+      font-size:12px;
+      line-height:1.35;
+      margin-top:10px;
+    }
 
-.signature div {
-  border-top:1px solid #000;
-  padding-top:5px;
-  font-size:12px;
-}
+    .box{
+      border:2px solid #000;
+      padding:10px;
+      font-size:13px;
+      line-height:1.35;
+      margin-top: 6px;
+    }
 
-/* ======== WHATSAPP ======== */
-.whats-box{
-  margin-top:15px;
-  padding:12px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  background:#fafafa;
-  display:none;
-}
+    .line{
+      display:block;
+      border-bottom:1px solid #000;
+      height:18px;
+      width:100%;
+      margin:5px 0 10px 0;
+    }
 
-.whats-box h2{
-  font-size:14px;
-  margin-bottom:8px;
-  color:#333;
-}
+    .section-title{
+      font-weight:900;
+      margin-top:10px;
+      margin-bottom:4px;
+    }
 
-.whats-box textarea{
-  width:100%;
-  min-height:90px;
-  padding:10px;
-  border:1px solid #ccc;
-  border-radius:4px;
-  resize:vertical;
-  font-family:Arial, sans-serif;
-  font-size:13px;
-}
+    .lines-block{
+      border:1px solid #000;
+      padding:8px;
+      margin-top:6px;
+    }
+    .lines-block .l{
+      border-bottom:1px solid #000;
+      height:18px;
+      width:100%;
+      margin: 0 0 6px 0;
+    }
 
-.whats-actions{
-  display:flex;
-  gap:10px;
-  margin-top:10px;
-}
+    .doc-footer{
+      position:absolute;
+      left:15mm; right:15mm;
+      bottom:15mm;
+    }
 
-.btn-copy{ background:#6c757d; color:#fff; flex:1; }
-.btn-openwa{ background:#25D366; color:#fff; flex:1; }
+    .footer-date{
+      font-size:12px;
+      margin-bottom:10px;
+    }
 
-/* ================= IMPRESSÃO ================= */
-@media print {
-  body { background:#fff; padding:0; }
-  .form-container { display:none; }
-  .pages-container { display:block !important; }
+    .signatures{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:30px;
+      text-align:center;
+      font-size:12px;
+    }
+    .sig{
+      border-top:1px solid #000;
+      padding-top:6px;
+      min-height: 34px;
+    }
+    .sig .name{
+      display:block;
+      margin-top:4px;
+      font-weight:700;
+      font-size:12px;
+    }
 
-  .logo-header img {
-    max-width:140px;
-  }
+    .page-break{ page-break-before: always; }
 
-  .page-break {
-    page-break-before:always;
-  }
-}
-</style>
+    @media print{
+      body{ background:#fff; padding:0; }
+      .form-container{ display:none !important; }
+      .pages-container{ display:block !important; }
+      .doc-page{ margin:0; }
+      .logo-header img{ max-width:150px; }
+    }
+
+    @media (max-width: 720px){
+      .form-row{ grid-template-columns:1fr; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="container">
 
-<div class="container">
+    <div class="form-container">
+      <img src="Azul_Cargo_Express_logo.png" class="logo-main" alt="Azul Cargo Express">
+      <h1>Gerador de Acareação Azul Cargo</h1>
 
-  <!-- FORMULÁRIO -->
-  <div class="form-container">
-    <img src="logo-azulcargo.png" class="logo-main" alt="Logo Azul Cargo">
-    <h1>Gerador de Acareação Azul Cargo</h1>
-
-    <div class="form-row">
-      <div>
-        <label>Entregador</label>
-        <input id="entregador">
+      <div class="form-row">
+        <div>
+          <label>Entregador <span class="req">*</span></label>
+          <input id="entregador" placeholder="Ex: EVERTON FRANCISCO" />
+        </div>
+        <div>
+          <label>CTE/CTR <span class="req">*</span></label>
+          <input id="cte" placeholder="Ex: 29031903" />
+        </div>
       </div>
-      <div>
-        <label>CTE</label>
-        <input id="cte">
+
+      <div class="form-row">
+        <div>
+          <label>Motivo da Acareação <span class="req">*</span></label>
+          <input id="motivo" placeholder="Ex: CLIENTE DESCONHECE O RECEBIMENTO" />
+        </div>
+        <div>
+          <label>Data da Entrega <span class="req">*</span></label>
+          <input type="date" id="dataEntrega" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label>Data da Solicitação <span class="req">*</span></label>
+          <input type="date" id="dataSolicitacao" />
+        </div>
+        <div>
+          <label>Data Limite <span class="req">*</span></label>
+          <input type="date" id="dataLimite" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label>WhatsApp 1 (somente números)</label>
+          <input id="whats1" placeholder="Ex: 5511999999999" />
+        </div>
+        <div>
+          <label>WhatsApp 2 (somente números)</label>
+          <input id="whats2" placeholder="Ex: 5511988888888" />
+        </div>
+      </div>
+
+      <div style="margin-top:6px;">
+        <label>Diretrizes (Página 1) — opcional</label>
+        <textarea id="diretrizes" placeholder="Cole aqui as diretrizes que devem sair na Página 1..."></textarea>
+        <div class="small">Esse texto sai no PDF/Impressão (Página 1).</div>
+      </div>
+
+      <div class="upload">
+        <label>Etiqueta (imagem) <span class="req">*</span> — sai na Página 1 e IMPRIME</label>
+        <input type="file" id="fileInput" accept="image/*" />
+        <div class="upload-btn" onclick="document.getElementById('fileInput').click()">Selecionar etiqueta</div>
+
+        <div class="preview" id="previewBox">
+          <div class="small">Prévia:</div>
+          <img id="previewImg" alt="Etiqueta" />
+        </div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <label>Mensagem WhatsApp (gerada automaticamente)</label>
+        <textarea id="msg" readonly placeholder="Clique em “Gerar Documento” para preencher automaticamente..."></textarea>
+      </div>
+
+      <div id="warnPrint" class="warn">
+        Se o seu celular não abrir a tela de impressão automaticamente:
+        abra o menu do navegador (⋮) → <b>Imprimir</b> / <b>Compartilhar</b> → <b>Salvar como PDF</b>.
+      </div>
+
+      <div class="button-row">
+        <button class="btn-generate" onclick="gerar()">Gerar Documento</button>
+        <button class="btn-pdf" id="btnPDF" onclick="gerarPDF()">✅ Gerar PDF (Salvar como PDF)</button>
+      </div>
+
+      <div class="button-row">
+        <button class="btn-print" id="btnPRINT" onclick="imprimir()">🖨️ Imprimir</button>
+        <button class="btn-copy" id="btnCopy" onclick="copiarMensagem()">✅ Copiar Mensagem</button>
+      </div>
+
+      <div class="button-row">
+        <button class="btn-wa" id="btnWA1" onclick="abrirWhatsApp(1)">✅ Abrir WhatsApp 1</button>
+        <button class="btn-wa" id="btnWA2" onclick="abrirWhatsApp(2)">✅ Abrir WhatsApp 2</button>
       </div>
     </div>
 
-    <button class="btn-generate" onclick="gerar()">Gerar Documento</button>
+    <!-- DOCUMENTO -->
+    <div class="pages-container" id="docs">
 
-    <!-- Botão PDF (abre impressão / salvar como PDF) -->
-    <button class="btn-pdf" id="btnPDF" onclick="baixarPDF()">✅ Baixar PDF (abre impressão / salvar como PDF)</button>
+      <!-- PÁGINA 1 -->
+      <div class="doc-page">
+        <div class="logo-header">
+          <img src="Azul_Cargo_Express_logo.png" alt="Azul Cargo Express" />
+        </div>
 
-    <!-- WhatsApp -->
-    <div class="whats-box" id="whatsBox">
-      <h2>Mensagem WhatsApp (gerada automaticamente)</h2>
-      <textarea id="whatsMsg" readonly></textarea>
+        <div class="doc-title">ACAREAÇÃO</div>
 
-      <div class="whats-actions">
-        <button class="btn-copy" onclick="copiarMensagem()">📋 Copiar Mensagem</button>
-        <button class="btn-openwa" onclick="abrirWhatsAppWeb()">🟢 Abrir WhatsApp Web</button>
+        <div class="doc-meta">
+          <div><strong>ENTREGADOR:</strong> <span id="doc-entregador"></span></div>
+          <div><strong>CTE/CTR:</strong> <span id="doc-cte"></span></div>
+          <div><strong>DATA CRIAÇÃO:</strong> <span id="doc-criacao"></span></div>
+        </div>
+
+        <div class="etiqueta-space">
+          <img id="etiquetaDocImg" alt="Etiqueta" />
+          <span id="etiquetaTexto">ETIQUETA (obrigatória)</span>
+        </div>
+
+        <div class="diretrizes">
+          <div style="font-weight:900; margin-bottom:6px;">DIRETRIZES</div>
+          <div id="doc-diretrizes">—</div>
+        </div>
       </div>
-    </div>
 
+      <!-- PÁGINA 2 -->
+      <div class="doc-page page-break">
+        <div class="logo-header">
+          <img src="Azul_Cargo_Express_logo.png" alt="Azul Cargo Express" />
+        </div>
+
+        <div class="doc-title">ACAREAÇÃO</div>
+
+        <div class="doc-meta">
+          <div><strong>ENTREGADOR:</strong> <span id="doc-entregador2"></span></div>
+          <div><strong>CTE/CTR:</strong> <span id="doc-cte2"></span></div>
+          <div><strong>MOTIVO:</strong> <span id="doc-motivo"></span></div>
+          <div><strong>DATA CRIAÇÃO:</strong> <span id="doc-criacao2"></span></div>
+          <div><strong>DATA ENTREGA:</strong> <span id="doc-dataEntrega"></span></div>
+          <div><strong>DATA SOLIC.:</strong> <span id="doc-dataSolic"></span></div>
+          <div><strong>DATA LIMITE:</strong> <span id="doc-dataLimite"></span></div>
+        </div>
+
+        <div class="box">
+          <div><strong>Eu,</strong></div>
+          <span class="line"></span>
+
+          <div><strong>portador(a) do documento RG/CPF nº</strong></div>
+          <span class="line"></span>
+
+          <div><strong>grau de parentesco com destinatário</strong></div>
+          <span class="line"></span>
+
+          <div>
+            declaro informações referente ao CTE/CTR <strong><span id="doc-cte3"></span></strong>.
+          </div>
+
+          <div class="section-title">RELATO DO DESTINATÁRIO</div>
+          <div class="lines-block">
+            <div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div>
+          </div>
+
+          <div class="section-title">RELATO DO ENTREGADOR</div>
+          <div class="lines-block">
+            <div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div>
+          </div>
+        </div>
+
+        <div class="doc-footer">
+          <div class="footer-date"><strong>Data:</strong> ____/____/________</div>
+
+          <div class="signatures">
+            <div class="sig">Assinatura do Destinatário</div>
+            <div class="sig">
+              Assinatura do Entregador
+              <span class="name" id="doc-entregadorAss"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
-
-  <!-- DOCUMENTOS -->
-  <div class="pages-container" id="docs">
-
-    <!-- PÁGINA 1 -->
-    <div class="doc-page">
-      <div class="logo-header">
-        <img src="logo-azulcargo.png" alt="Logo Azul Cargo">
-      </div>
-
-      <div class="doc-title">ACAREAÇÃO</div>
-
-      <p><strong>ENTREGADOR:</strong> <span id="doc-entregador"></span></p>
-      <p><strong>CTE:</strong> <span id="doc-cte"></span></p>
-
-      <div class="etiqueta-space">
-        ETIQUETA
-      </div>
-    </div>
-
-    <!-- PÁGINA 2 -->
-    <div class="doc-page page-break">
-      <div class="logo-header">
-        <img src="logo-azulcargo.png" alt="Logo Azul Cargo">
-      </div>
-
-      <div class="doc-title">ACAREAÇÃO</div>
-
-      <div class="declaration-box">
-        Eu,
-        <div class="long-line"></div>
-
-        portador(a) do documento RG/CPF nº
-        <div class="long-line"></div>
-
-        grau de parentesco com destinatário
-        <div class="long-line"></div>
-
-        declaro informações referente ao CTE
-        <strong><span id="doc-cte2"></span></strong>.
-      </div>
-
-      <div class="signature">
-        <div>Assinatura do Cliente</div>
-        <div>Assinatura do Entregador</div>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 <script>
-function gerar() {
-  const entregador = (document.getElementById('entregador').value || '').trim().toUpperCase();
-  const cte = (document.getElementById('cte').value || '').trim();
+  function formatarDataBR(iso){
+    if(!iso) return "";
+    const [y,m,d] = iso.split("-");
+    return `${d}/${m}/${y}`;
+  }
 
-  document.getElementById('doc-entregador').textContent = entregador;
-  document.getElementById('doc-cte').textContent = cte;
-  document.getElementById('doc-cte2').textContent = cte;
+  function agoraBR(){
+    const dt = new Date();
+    const dd = String(dt.getDate()).padStart(2,'0');
+    const mm = String(dt.getMonth()+1).padStart(2,'0');
+    const yyyy = dt.getFullYear();
+    const hh = String(dt.getHours()).padStart(2,'0');
+    const mi = String(dt.getMinutes()).padStart(2,'0');
+    return `${dd}/${mm}/${yyyy} ${hh}:${mi}`;
+  }
 
-  document.getElementById('docs').style.display = 'block';
-  document.getElementById('btnPDF').style.display = 'block';
+  function gerarMensagemWhats(d){
+    return (
+`Olá! Tudo bem?
 
-  // Mensagem WhatsApp automática
-  const msg =
-`Olá! Segue em anexo o documento de ACAREAÇÃO.
-CTE: ${cte}
-Entregador: ${entregador}
+Segue em anexo o documento de ACAREAÇÃO.
 
-Por favor, preencher e devolver assinado.`;
+• CTE/CTR: ${d.cte}
+• Motivo: ${d.motivo}
+• Entregador: ${d.entregador}
+• Data Entrega: ${d.dataEntrega}
+• Data Solicitação: ${d.dataSolicitacao}
+• Data Limite: ${d.dataLimite}
 
-  document.getElementById('whatsMsg').value = msg;
-  document.getElementById('whatsBox').style.display = 'block';
-}
+Por gentileza, confirmar o recebimento e nos retornar após o preenchimento.`
+    );
+  }
 
-function baixarPDF() {
-  // garante que o conteúdo está visível antes da impressão
-  document.getElementById('docs').style.display = 'block';
-  window.print();
-}
+  // Upload etiqueta
+  document.getElementById('fileInput').addEventListener('change', function(e){
+    const file = e.target.files && e.target.files[0];
+    if(!file) return;
 
-function copiarMensagem() {
-  const txt = document.getElementById('whatsMsg').value;
-  navigator.clipboard.writeText(txt).then(() => {
-    alert("Mensagem copiada!");
-  }).catch(() => {
-    alert("Não consegui copiar automaticamente. Copie manualmente.");
+    const reader = new FileReader();
+    reader.onload = function(ev){
+      const src = ev.target.result;
+
+      document.getElementById('previewImg').src = src;
+      document.getElementById('previewBox').style.display = 'block';
+
+      const img = document.getElementById('etiquetaDocImg');
+      img.src = src;
+      img.style.display = 'block';
+      document.getElementById('etiquetaTexto').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
   });
-}
 
-function abrirWhatsAppWeb() {
-  const txt = document.getElementById('whatsMsg').value;
-  const url = "https://web.whatsapp.com/send?text=" + encodeURIComponent(txt);
-  window.open(url, "_blank");
-}
+  function etiquetaCarregada(){
+    const img = document.getElementById('etiquetaDocImg');
+    return !!(img && img.src && img.src.startsWith("data:image/"));
+  }
+
+  function gerar(){
+    const entregador = (document.getElementById('entregador').value || '').trim().toUpperCase();
+    const cte = (document.getElementById('cte').value || '').trim();
+    const motivo = (document.getElementById('motivo').value || '').trim();
+
+    const dataEntregaISO = document.getElementById('dataEntrega').value;
+    const dataSolicISO   = document.getElementById('dataSolicitacao').value;
+    const dataLimISO     = document.getElementById('dataLimite').value;
+
+    const diretrizes = (document.getElementById('diretrizes').value || '').trim();
+
+    if(!entregador || !cte || !motivo || !dataEntregaISO || !dataSolicISO || !dataLimISO){
+      alert("Preencha os campos obrigatórios: Entregador, CTE/CTR, Motivo, Data Entrega, Data Solicitação e Data Limite.");
+      return;
+    }
+    if(!etiquetaCarregada()){
+      alert("Selecione a ETIQUETA (imagem). Ela é obrigatória e será impressa na Página 1.");
+      return;
+    }
+
+    const criacao = agoraBR();
+
+    // Pag 1
+    document.getElementById('doc-entregador').textContent = entregador;
+    document.getElementById('doc-cte').textContent = cte;
+    document.getElementById('doc-criacao').textContent = criacao;
+    document.getElementById('doc-diretrizes').textContent = diretrizes || "—";
+
+    // Pag 2
+    document.getElementById('doc-entregador2').textContent = entregador;
+    document.getElementById('doc-cte2').textContent = cte;
+    document.getElementById('doc-cte3').textContent = cte;
+    document.getElementById('doc-motivo').textContent = motivo;
+    document.getElementById('doc-criacao2').textContent = criacao;
+
+    document.getElementById('doc-dataEntrega').textContent = formatarDataBR(dataEntregaISO);
+    document.getElementById('doc-dataSolic').textContent = formatarDataBR(dataSolicISO);
+    document.getElementById('doc-dataLimite').textContent = formatarDataBR(dataLimISO);
+
+    document.getElementById('doc-entregadorAss').textContent = entregador;
+
+    // Msg Whats
+    document.getElementById('msg').value = gerarMensagemWhats({
+      entregador, cte, motivo,
+      dataEntrega: formatarDataBR(dataEntregaISO),
+      dataSolicitacao: formatarDataBR(dataSolicISO),
+      dataLimite: formatarDataBR(dataLimISO)
+    });
+
+    // Mostra doc e botões
+    document.getElementById('docs').style.display = 'block';
+
+    document.getElementById('btnPDF').style.display = 'block';
+    document.getElementById('btnPRINT').style.display = 'block';
+    document.getElementById('btnCopy').style.display = 'block';
+    document.getElementById('btnWA1').style.display = 'block';
+    document.getElementById('btnWA2').style.display = 'block';
+
+    // Dica caso o celular bloqueie print
+    document.getElementById('warnPrint').style.display = 'block';
+
+    setTimeout(() => {
+      document.getElementById('docs').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+
+  function tentarPrint(){
+    // alguns mobiles só abrem se o doc estiver visível e após um pequeno delay
+    document.getElementById('docs').style.display = 'block';
+    setTimeout(() => {
+      try { window.print(); } catch(e) {}
+    }, 250);
+  }
+
+  // Botão "Gerar PDF" (na prática: imprimir -> salvar como PDF)
+  function gerarPDF(){
+    tentarPrint();
+  }
+
+  // Botão extra só de imprimir
+  function imprimir(){
+    tentarPrint();
+  }
+
+  function copiarMensagem(){
+    const txt = document.getElementById('msg').value || '';
+    if(!txt.trim()){
+      alert("Gere o documento primeiro para criar a mensagem.");
+      return;
+    }
+    navigator.clipboard.writeText(txt).then(() => {
+      alert("Mensagem copiada!");
+    }).catch(() => {
+      alert("Não consegui copiar automaticamente. Selecione e copie manualmente.");
+    });
+  }
+
+  function abrirWhatsApp(which){
+    const msg = document.getElementById('msg').value || '';
+    if(!msg.trim()){
+      alert("Gere o documento primeiro para criar a mensagem.");
+      return;
+    }
+
+    let numero = "";
+    if(which === 1) numero = (document.getElementById('whats1').value || '').replace(/\D/g,'');
+    if(which === 2) numero = (document.getElementById('whats2').value || '').replace(/\D/g,'');
+
+    const texto = encodeURIComponent(msg);
+    const url = numero ? `https://wa.me/${numero}?text=${texto}` : `https://web.whatsapp.com/`;
+    window.open(url, "_blank");
+  }
 </script>
 
 </body>
 </html>
-```0
