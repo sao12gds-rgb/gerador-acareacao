@@ -137,6 +137,7 @@
       user-select: none;
       font-weight: bold;
     }
+
     .upload-btn:hover { background-color: #0052a3; }
 
     .image-preview { margin-top: 15px; display: none; }
@@ -226,9 +227,7 @@
 
     .page-break { page-break-before: always; }
 
-    .wa-box {
-      margin-top: 18px;
-    }
+    .wa-box { margin-top: 18px; }
 
     .wa-actions {
       display: flex;
@@ -270,73 +269,83 @@
     }
 
     /* =========================
-       PAGINA 2 - AJUSTE PARA FICAR
-       PROXIMO AO ORIGINAL ANEXADO
+       PAGINA 2 - FORMULARIO ORIGINAL
        ========================= */
 
     #page2 {
-      padding: 9mm 10mm 12mm 10mm;
+      position: relative;
+      padding: 14mm 10mm 10mm 10mm;
       font-size: 11px;
-      line-height: 1.15;
+      line-height: 1.1;
     }
 
     #page2 .logo-header {
-      margin-bottom: 2px;
+      text-align: left;
+      margin-bottom: 0;
+      height: 24px;
     }
 
     #page2 .logo-header img {
-      max-width: 118px;
+      max-width: 105px;
       height: auto;
+      display: block;
     }
 
     #page2 .doc-title {
       border-bottom: none;
       padding-bottom: 0;
-      margin-bottom: 6px;
+      margin-top: 10px;
+      margin-bottom: 12px;
       font-size: 14px;
       letter-spacing: 0;
+      text-align: center;
     }
 
     .p2-intro {
       font-size: 10px;
-      line-height: 1.2;
-      margin-bottom: 8px;
-      text-align: left;
+      line-height: 1.05;
+      margin-top: 2px;
+      margin-bottom: 10px;
     }
 
     .p2-blank {
       display: inline-block;
       border-bottom: 1px solid #000;
-      height: 10px;
+      height: 9px;
       vertical-align: baseline;
       margin: 0 2px;
     }
 
-    .p2-blank.nome { width: 245px; }
-    .p2-blank.doc { width: 120px; }
-    .p2-blank.parentesco { width: 180px; }
+    .p2-blank.nome { width: 285px; }
+    .p2-blank.doc { width: 150px; }
+    .p2-blank.parentesco { width: 175px; }
 
     .p2-box {
       border: 1px solid #000;
-      padding: 7px 8px 5px 8px;
-      margin-top: 4px;
-      margin-bottom: 10px;
+      padding: 7px 8px 4px 8px;
+      margin-bottom: 16px;
     }
 
     .p2-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      column-gap: 22px;
-      row-gap: 8px;
+      column-gap: 24px;
+      row-gap: 10px;
       align-items: start;
       font-size: 10px;
+    }
+
+    .p2-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .p2-item {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 8px;
+      gap: 10px;
       min-height: 24px;
     }
 
@@ -351,39 +360,41 @@
     }
 
     .p2-box-foot {
-      text-align: center;
+      text-align: right;
+      font-size: 9px;
       margin-top: 4px;
-      font-size: 10px;
+      padding-right: 4px;
     }
 
     .p2-block {
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 10px;
     }
 
     .p2-label {
-      margin-bottom: 4px;
+      margin-bottom: 8px;
       font-weight: normal;
     }
 
     .p2-line {
       border-bottom: 1px solid #000;
-      height: 15px;
-      margin-bottom: 5px;
+      height: 16px;
+      margin-bottom: 6px;
+      width: 100%;
     }
 
     .p2-line.short-1 {
-      width: 74%;
+      width: 47%;
     }
 
     .p2-line.short-2 {
-      width: 88%;
+      width: 92%;
     }
 
     .p2-footer {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 28px;
       margin-top: 12px;
       font-size: 10px;
       align-items: end;
@@ -391,8 +402,8 @@
 
     .p2-footer-field {
       display: flex;
-      gap: 5px;
       align-items: baseline;
+      gap: 6px;
     }
 
     .p2-footer-blank-local {
@@ -412,20 +423,20 @@
     .p2-signatures {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 26px;
-      margin-top: 34px;
+      gap: 42px;
+      margin-top: 38px;
       text-align: center;
       font-size: 10px;
     }
 
     .p2-sign {
-      min-height: 42px;
+      min-height: 48px;
     }
 
     .p2-sign-line {
       border-top: 1px solid #000;
-      width: 82%;
-      margin: 0 auto 5px auto;
+      width: 78%;
+      margin: 0 auto 6px auto;
       height: 1px;
     }
 
@@ -468,11 +479,11 @@
       }
 
       #page2 {
-        padding: 9mm 10mm 12mm 10mm;
+        padding: 14mm 10mm 10mm 10mm;
       }
 
       #page2 .logo-header img {
-        max-width: 118px;
+        max-width: 105px;
       }
     }
   </style>
@@ -481,7 +492,6 @@
 <body>
   <div class="container">
 
-    <!-- FORMULÁRIO -->
     <div class="form-container">
       <img class="logo-main" src="logo-azulcargo.png" alt="Azul Cargo Express"
            onerror="this.style.display='none'; alert('Logo não carregou. Confirme que o arquivo está na RAIZ e o nome é: logo-azulcargo.png');" />
@@ -580,10 +590,8 @@
       </form>
     </div>
 
-    <!-- DOCUMENTOS GERADOS -->
     <div class="pages-container" id="pagesContainer">
 
-      <!-- PÁGINA 1 -->
       <div class="doc-page" id="page1">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express"
@@ -614,7 +622,6 @@
         </div>
       </div>
 
-      <!-- PÁGINA 2 -->
       <div class="doc-page page-break" id="page2">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express"
@@ -624,50 +631,52 @@
         <div class="doc-title">ACAREAÇÃO</div>
 
         <div class="p2-intro">
-          Eu, <span class="p2-blank nome"></span>
-          portador(a) do documento RG/CPF n°
+          Eu,<span class="p2-blank nome"></span>
+          portador (a) do documento RG/CPF n°
           <span class="p2-blank doc"></span>,
           grau de parentesco com destinatário
-          <span class="p2-blank parentesco"></span>.
+          <span class="p2-blank parentesco"></span>,
           <br>
-          declaro informações referente ao CTE <strong><span id="doc-cte2"></span></strong>
-          (Campos de preenchimento obrigatório):
+          declaro informações referente a NF <strong><span id="doc-cte2"></span></strong>
+          correspondente ao CTE. ____________________ (Campos de preenchimento obrigatório):
         </div>
 
         <div class="p2-box">
           <div class="p2-grid">
-            <div class="p2-item">
-              <div class="p2-text">Recebi a carga mencionada</div>
-              <div class="p2-opt">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+            <div class="p2-col">
+              <div class="p2-item">
+                <div class="p2-text">Recebi a carga mencionada</div>
+                <div class="p2-opt">( ) SIM<br>( ) NÃO</div>
+              </div>
+
+              <div class="p2-item">
+                <div class="p2-text">Recebi a carga em perfeitas condições</div>
+                <div class="p2-opt">( ) SIM<br>( ) NÃO</div>
+              </div>
+
+              <div class="p2-item">
+                <div class="p2-text">Recebi a embalagem danificada</div>
+                <div class="p2-opt">( ) SIM<br>( ) NÃO</div>
+              </div>
             </div>
 
-            <div class="p2-item">
-              <div class="p2-text">Produtos internos estavam intactos</div>
-              <div class="p2-opt">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-            </div>
+            <div class="p2-col">
+              <div class="p2-item">
+                <div class="p2-text">Produtos internos estavam intactos</div>
+                <div class="p2-opt">( ) SIM<br>( ) NÃO</div>
+              </div>
 
-            <div class="p2-item">
-              <div class="p2-text">Recebi a carga em perfeitas condições</div>
-              <div class="p2-opt">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+              <div class="p2-item">
+                <div class="p2-text">Estavam faltando itens do pedido dentro da caixa.</div>
+                <div class="p2-opt">( ) SIM<br>( ) NÃO</div>
+              </div>
             </div>
-
-            <div class="p2-item">
-              <div class="p2-text">Estavam faltando itens do pedido dentro da caixa</div>
-              <div class="p2-opt">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-            </div>
-
-            <div class="p2-item">
-              <div class="p2-text">Recebi a embalagem danificada</div>
-              <div class="p2-opt">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-            </div>
-
-            <div></div>
           </div>
 
           <div class="p2-box-foot">(Campos de preenchimento obrigatório)</div>
         </div>
 
-        <div class="p2-block" style="margin-top: 14px;">
+        <div class="p2-block">
           <div class="p2-label">Relato destinatário (Campo de preenchimento obrigatório):</div>
           <div class="p2-line"></div>
           <div class="p2-line"></div>
@@ -675,7 +684,7 @@
           <div class="p2-line short-1"></div>
         </div>
 
-        <div class="p2-block" style="margin-top: 14px;">
+        <div class="p2-block" style="margin-top: 12px;">
           <div class="p2-label">Observações Entregador (Campo de preenchimento obrigatório):</div>
           <div class="p2-line"></div>
           <div class="p2-line"></div>
