@@ -117,7 +117,6 @@
       line-height: 1.4;
     }
 
-    /* input file: mantém acessível e clicável no mobile */
     #fileInput {
       position: absolute;
       left: -9999px;
@@ -280,7 +279,6 @@
 
     .page-break { page-break-before: always; }
 
-    /* WhatsApp area */
     .wa-box {
       margin-top: 18px;
     }
@@ -314,7 +312,178 @@
       line-height: 1.35;
     }
 
-    /* impressão */
+    /* =========================================
+       AJUSTE VISUAL EXCLUSIVO DA PÁGINA 2
+       ========================================= */
+
+    #page2 {
+      padding: 14mm 13mm 12mm 13mm;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    #page2 .logo-header {
+      margin-bottom: 4px;
+    }
+
+    #page2 .logo-header img {
+      max-width: 128px;
+      height: auto;
+    }
+
+    #page2 .doc-title {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 8px;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .p2-declaration {
+      font-size: 11px;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .p2-line {
+      display: inline-block;
+      border-bottom: 1px solid #000;
+      height: 11px;
+      vertical-align: baseline;
+      margin: 0 3px;
+    }
+
+    .p2-line.nome { width: 245px; }
+    .p2-line.doc { width: 140px; }
+    .p2-line.parentesco { width: 180px; }
+
+    .p2-check-wrap {
+      border: 1px solid #000;
+      padding: 8px 10px 6px 10px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+
+    .p2-check-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 22px;
+      row-gap: 7px;
+      align-items: start;
+      font-size: 11px;
+    }
+
+    .p2-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .p2-check-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      min-height: 20px;
+    }
+
+    .p2-check-item .txt {
+      flex: 1;
+      padding-right: 4px;
+    }
+
+    .p2-check-item .opts {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .p2-check-foot {
+      text-align: center;
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    .p2-section {
+      margin-top: 8px;
+      font-size: 11px;
+    }
+
+    .p2-section-label {
+      margin-bottom: 4px;
+      font-weight: normal;
+    }
+
+    .p2-write-line {
+      border-bottom: 1px solid #000;
+      height: 16px;
+      margin-bottom: 6px;
+    }
+
+    .p2-write-line.short {
+      width: 74%;
+    }
+
+    .p2-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 10px;
+      font-size: 11px;
+      align-items: end;
+    }
+
+    .p2-footer-field {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .p2-footer-line.local {
+      width: 95px;
+      border-bottom: 1px solid #000;
+      height: 11px;
+      display: inline-block;
+    }
+
+    .p2-footer-line.data {
+      width: 70px;
+      border-bottom: 1px solid #000;
+      height: 11px;
+      display: inline-block;
+    }
+
+    .p2-signatures {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      margin-top: 34px;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .p2-sign-block {
+      position: relative;
+      min-height: 54px;
+    }
+
+    .p2-sign-line {
+      border-top: 1px solid #000;
+      width: 82%;
+      margin: 0 auto 6px auto;
+      height: 1px;
+    }
+
+    .p2-sign-label {
+      font-size: 10px;
+    }
+
+    .p2-entregador-nome {
+      display: block;
+      margin-top: 4px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
     @media print {
       body { background: white; padding: 0; margin: 0; }
       .form-container { display: none !important; }
@@ -327,6 +496,14 @@
         min-height: auto;
       }
       .logo-header img { max-width: 140px; }
+
+      #page2 {
+        padding: 14mm 13mm 12mm 13mm;
+      }
+
+      #page2 .logo-header img {
+        max-width: 128px;
+      }
     }
   </style>
 </head>
@@ -336,7 +513,6 @@
 
     <!-- FORMULÁRIO -->
     <div class="form-container">
-      <!-- Logo (nome no repo: logo-azulcargo.png) -->
       <img class="logo-main" src="logo-azulcargo.png" alt="Azul Cargo Express"
            onerror="this.style.display='none'; alert('Logo não carregou. Confirme que o arquivo está na RAIZ e o nome é: logo-azulcargo.png');" />
 
@@ -404,7 +580,6 @@
 
           <input type="file" id="fileInput" accept="image/*" />
 
-          <!-- botão que realmente abre o seletor -->
           <div class="upload-btn" id="btnEtiqueta">Selecionar etiqueta</div>
 
           <div class="image-preview" id="imagePreview">
@@ -439,7 +614,7 @@
     <!-- DOCUMENTOS GERADOS -->
     <div class="pages-container" id="pagesContainer">
 
-      <!-- PÁGINA 1 (ETIQUETA + DIRETRIZES) -->
+      <!-- PÁGINA 1 -->
       <div class="doc-page" id="page1">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express"
@@ -470,7 +645,7 @@
         </div>
       </div>
 
-      <!-- PÁGINA 2 (FORMULÁRIO COM PERGUNTAS PARA TICKAR) -->
+      <!-- PÁGINA 2 -->
       <div class="doc-page page-break" id="page2">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express"
@@ -479,67 +654,93 @@
 
         <div class="doc-title">ACAREAÇÃO</div>
 
-        <div style="font-size:12px; margin-bottom:8px;">
-          Eu, <span class="inline-line long"></span>
-          portador(a) do documento RG/CPF nº <span class="inline-line"></span>,
-          grau de parentesco com destinatário <span class="inline-line wide"></span>,
-          declaro informações referente ao CTE <strong><span id="doc-cte2"></span></strong> (Campos de preenchimento obrigatório):
+        <div class="p2-declaration">
+          Eu,
+          <span class="p2-line nome"></span>
+          portador(a) do documento RG/CPF nº
+          <span class="p2-line doc"></span>,
+          grau de parentesco com destinatário
+          <span class="p2-line parentesco"></span>,
+          <br>
+          declaro informações referente ao CTE <strong><span id="doc-cte2"></span></strong>
+          (Campos de preenchimento obrigatório):
         </div>
 
-        <div class="check-area">
-          <div class="check-grid">
-            <div class="check-item">
-              <div>Recebi a carga mencionada</div>
-              <div class="check-boxes">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-            </div>
-            <div class="check-item">
-              <div>Produtos internos estavam intactos</div>
-              <div class="check-boxes">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+        <div class="p2-check-wrap">
+          <div class="p2-check-grid">
+            <div class="p2-col">
+              <div class="p2-check-item">
+                <div class="txt">Recebi a carga mencionada</div>
+                <div class="opts">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+              </div>
+
+              <div class="p2-check-item">
+                <div class="txt">Recebi a carga em perfeitas condições</div>
+                <div class="opts">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+              </div>
+
+              <div class="p2-check-item">
+                <div class="txt">Recebi a embalagem danificada</div>
+                <div class="opts">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+              </div>
             </div>
 
-            <div class="check-item">
-              <div>Recebi a carga em perfeitas condições</div>
-              <div class="check-boxes">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-            </div>
-            <div class="check-item">
-              <div>Estavam faltando itens do pedido dentro da caixa</div>
-              <div class="check-boxes">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-            </div>
+            <div class="p2-col">
+              <div class="p2-check-item">
+                <div class="txt">Produtos internos estavam intactos</div>
+                <div class="opts">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+              </div>
 
-            <div class="check-item">
-              <div>Recebi a embalagem danificada</div>
-              <div class="check-boxes">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+              <div class="p2-check-item">
+                <div class="txt">Estavam faltando itens do pedido dentro da caixa</div>
+                <div class="opts">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+              </div>
             </div>
-            <div></div>
           </div>
 
-          <div style="text-align:center; margin-top:10px; font-size:11px;">
-            (Campos de preenchimento obrigatório)
+          <div class="p2-check-foot">(Campos de preenchimento obrigatório)</div>
+        </div>
+
+        <div class="p2-section">
+          <div class="p2-section-label">Relato destinatário (Campo de preenchimento obrigatório):</div>
+          <div class="p2-write-line"></div>
+          <div class="p2-write-line"></div>
+          <div class="p2-write-line"></div>
+          <div class="p2-write-line short"></div>
+        </div>
+
+        <div class="p2-section" style="margin-top:12px;">
+          <div class="p2-section-label">Observações Entregador (Campo de preenchimento obrigatório):</div>
+          <div class="p2-write-line"></div>
+          <div class="p2-write-line"></div>
+          <div class="p2-write-line short"></div>
+        </div>
+
+        <div class="p2-footer">
+          <div class="p2-footer-field">
+            <strong>Local:</strong>
+            <span class="p2-footer-line local"></span>
+          </div>
+
+          <div class="p2-footer-field">
+            <strong>Data:</strong>
+            <span class="p2-footer-line data"></span>
           </div>
         </div>
 
-        <div class="lines-block">
-          <div class="label">Relato destinatário (Campo de preenchimento obrigatório):</div>
-          <div class="line"></div><div class="line"></div><div class="line"></div>
-        </div>
-
-        <div class="lines-block">
-          <div class="label">Observações Entregador (Campo de preenchimento obrigatório):</div>
-          <div class="line"></div><div class="line"></div><div class="line"></div>
-        </div>
-
-        <div class="footer-row">
-          <div class="footer-field">
-            <strong>Local:</strong> <div class="footer-blank"></div>
+        <div class="p2-signatures">
+          <div class="p2-sign-block">
+            <div class="p2-sign-line"></div>
+            <div class="p2-sign-label">Nome/Assinatura do cliente</div>
           </div>
-          <div class="footer-field">
-            <strong>Data:</strong> <div class="footer-blank"></div>
-          </div>
-        </div>
 
-        <div class="signature">
-          <div class="sig-line">Nome/Assinatura do cliente</div>
-          <div class="sig-line">Nome/Assinatura do entregador<br><strong><span id="doc-entregador-ass"></span></strong></div>
+          <div class="p2-sign-block">
+            <div class="p2-sign-line"></div>
+            <div class="p2-sign-label">
+              Nome/Assinatura do entregador
+              <span class="p2-entregador-nome" id="doc-entregador-ass"></span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -574,7 +775,6 @@
 
     function formatDateBR(dateStr) {
       if (!dateStr) return "";
-      // date (yyyy-mm-dd)
       const [y,m,d] = dateStr.split("-");
       if (!y || !m || !d) return "";
       return `${d}/${m}/${y}`;
@@ -582,7 +782,6 @@
 
     function formatDateTimeBR(dtStr) {
       if (!dtStr) return "";
-      // datetime-local (yyyy-mm-ddThh:mm)
       const parts = dtStr.split("T");
       if (parts.length !== 2) return "";
       const date = formatDateBR(parts[0]);
@@ -616,12 +815,10 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
       }
     }
 
-    // botão "Selecionar etiqueta" realmente abre o file picker
     btnEtiqueta.addEventListener('click', () => {
       fileInput.click();
     });
 
-    // ao escolher a etiqueta
     fileInput.addEventListener('change', (e) => {
       const file = e.target.files && e.target.files[0];
       if (!file) return;
@@ -636,11 +833,9 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
       reader.onload = (ev) => {
         etiquetaDataUrl = ev.target.result;
 
-        // preview no formulário
         previewImg.src = etiquetaDataUrl;
         imagePreview.style.display = 'block';
 
-        // etiqueta no documento (imprime)
         etiquetaImgDoc.src = etiquetaDataUrl;
         etiquetaImgDoc.style.display = 'block';
         etiquetaPlaceholder.style.display = 'none';
@@ -656,7 +851,6 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
         await navigator.clipboard.writeText(text);
         alert("Mensagem copiada!");
       } catch (e) {
-        // fallback simples
         waMsg.focus();
         waMsg.select();
         document.execCommand("copy");
@@ -677,7 +871,6 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
     });
 
     btnPDF.addEventListener("click", () => {
-      // “Baixar PDF” = abre impressão, usuário salva como PDF
       window.print();
     });
 
@@ -695,7 +888,6 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
       const dataSolicitacaoVal = formatDateTimeBR(document.getElementById('dataSolicitacao').value);
       const dataLimiteVal = formatDateBR(document.getElementById('dataLimite').value);
 
-      // preenche páginas
       document.getElementById('doc-entregador-p1').textContent = entregadorVal;
       document.getElementById('doc-cte-p1').textContent = cteVal;
       document.getElementById('doc-dataEntrega-p1').textContent = dataEntregaVal;
@@ -706,7 +898,6 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
       document.getElementById('doc-cte2').textContent = cteVal;
       document.getElementById('doc-entregador-ass').textContent = entregadorVal;
 
-      // gera mensagem WhatsApp (novo formato)
       const data = {
         cte: cteVal,
         entregador: entregadorVal,
@@ -716,19 +907,16 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
       };
       waMsg.value = buildWhatsAppMessage(data);
 
-      // mostra docs + habilita botões
       pagesContainer.classList.add('visible');
       btnPDF.classList.add('visible');
 
       updateWhatsButtons();
 
-      // rola pra ver o documento
       setTimeout(() => {
         pagesContainer.scrollIntoView({ behavior: 'smooth' });
       }, 80);
     });
 
-    // ao limpar, reseta tudo que é visual
     document.getElementById("btnClear").addEventListener("click", () => {
       etiquetaDataUrl = "";
       fileInput.value = "";
@@ -748,4 +936,3 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
   </script>
 </body>
 </html>
-
