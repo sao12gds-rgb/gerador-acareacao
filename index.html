@@ -157,16 +157,24 @@
       line-height: 1.35;
     }
 
-    .logo-header { width: 100%; text-align: center; margin-bottom: 6px; }
-    .logo-header img { max-width: 150px; height: auto; }
+    .logo-header {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .logo-header img {
+      max-width: 150px;
+      height: auto;
+    }
 
     .doc-title {
-      text-align:center;
-      font-weight:bold;
-      font-size:16px;
-      border-bottom:1px solid #000;
-      padding-bottom:6px;
-      margin-bottom:10px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
       letter-spacing: 0.5px;
     }
 
@@ -191,8 +199,17 @@
       overflow: hidden;
       background: #fff;
     }
-    .etiqueta-space img { max-width: 100%; max-height: 100%; display:none; }
-    .etiqueta-space .placeholder { color:#777; font-weight:bold; }
+
+    .etiqueta-space img {
+      max-width: 100%;
+      max-height: 100%;
+      display: none;
+    }
+
+    .etiqueta-space .placeholder {
+      color: #777;
+      font-weight: bold;
+    }
 
     .doc-important {
       margin-top: 10px;
@@ -201,80 +218,10 @@
       font-size: 12px;
       line-height: 1.35;
     }
-    .doc-important strong { display:block; margin-bottom: 6px; }
 
-    .declaration-box {
-      border: 2px solid #000;
-      padding: 10px;
-      font-size: 12px;
-    }
-
-    .inline-line {
-      display: inline-block;
-      border-bottom: 1px solid #000;
-      min-width: 180px;
-      height: 14px;
-      vertical-align: bottom;
-      margin: 0 4px;
-    }
-    .inline-line.wide { min-width: 260px; }
-    .inline-line.long { min-width: 320px; }
-
-    .check-area {
-      border: 1px solid #000;
-      margin-top: 10px;
-      padding: 10px;
-      font-size: 12px;
-    }
-    .check-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 20px;
-    }
-    .check-item { display:flex; justify-content:space-between; gap:10px; }
-    .check-boxes { white-space: nowrap; }
-
-    .lines-block {
-      margin-top: 12px;
-      font-size: 12px;
-    }
-    .lines-block .label { margin-bottom: 6px; font-weight:bold; }
-    .line {
-      border-bottom: 1px solid #000;
-      height: 16px;
+    .doc-important strong {
+      display: block;
       margin-bottom: 6px;
-    }
-
-    .footer-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      margin-top: 12px;
-      font-size: 12px;
-    }
-    .footer-field {
-      display:flex;
-      gap: 8px;
-      align-items: baseline;
-    }
-    .footer-blank {
-      flex:1;
-      border-bottom: 1px solid #000;
-      height: 14px;
-    }
-
-    .signature {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:40px;
-      margin-top: 24px;
-      text-align:center;
-      font-size: 12px;
-    }
-    .signature .sig-line {
-      border-top: 1px solid #000;
-      padding-top: 6px;
-      min-height: 40px;
     }
 
     .page-break { page-break-before: always; }
@@ -284,26 +231,36 @@
     }
 
     .wa-actions {
-      display:flex;
-      gap:10px;
+      display: flex;
+      gap: 10px;
       flex-wrap: wrap;
       margin-top: 10px;
     }
 
-    .btn-copy { background:#0b5ed7; color:#fff; }
-    .btn-copy:hover { background:#0a58ca; }
+    .btn-copy {
+      background: #0b5ed7;
+      color: #fff;
+    }
+
+    .btn-copy:hover {
+      background: #0a58ca;
+    }
 
     .btn-wa {
-      background:#25D366;
-      color:#fff;
+      background: #25D366;
+      color: #fff;
       opacity: 0.5;
       cursor: not-allowed;
     }
+
     .btn-wa.enabled {
       opacity: 1;
       cursor: pointer;
     }
-    .btn-wa.enabled:hover { filter: brightness(0.95); }
+
+    .btn-wa.enabled:hover {
+      filter: brightness(0.95);
+    }
 
     .note {
       font-size: 12px;
@@ -312,197 +269,210 @@
       line-height: 1.35;
     }
 
-    /* =========================================
-       AJUSTE VISUAL EXCLUSIVO DA PÁGINA 2
-       ========================================= */
+    /* =========================
+       PAGINA 2 - AJUSTE PARA FICAR
+       PROXIMO AO ORIGINAL ANEXADO
+       ========================= */
 
     #page2 {
-      padding: 14mm 13mm 12mm 13mm;
-      font-size: 12px;
-      line-height: 1.2;
+      padding: 9mm 10mm 12mm 10mm;
+      font-size: 11px;
+      line-height: 1.15;
     }
 
     #page2 .logo-header {
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     #page2 .logo-header img {
-      max-width: 128px;
+      max-width: 118px;
       height: auto;
     }
 
     #page2 .doc-title {
       border-bottom: none;
       padding-bottom: 0;
-      margin-bottom: 8px;
-      font-size: 15px;
+      margin-bottom: 6px;
+      font-size: 14px;
       letter-spacing: 0;
     }
 
-    .p2-declaration {
-      font-size: 11px;
-      line-height: 1.25;
+    .p2-intro {
+      font-size: 10px;
+      line-height: 1.2;
       margin-bottom: 8px;
+      text-align: left;
     }
 
-    .p2-line {
+    .p2-blank {
       display: inline-block;
       border-bottom: 1px solid #000;
-      height: 11px;
+      height: 10px;
       vertical-align: baseline;
-      margin: 0 3px;
+      margin: 0 2px;
     }
 
-    .p2-line.nome { width: 245px; }
-    .p2-line.doc { width: 140px; }
-    .p2-line.parentesco { width: 180px; }
+    .p2-blank.nome { width: 245px; }
+    .p2-blank.doc { width: 120px; }
+    .p2-blank.parentesco { width: 180px; }
 
-    .p2-check-wrap {
+    .p2-box {
       border: 1px solid #000;
-      padding: 8px 10px 6px 10px;
+      padding: 7px 8px 5px 8px;
       margin-top: 4px;
       margin-bottom: 10px;
     }
 
-    .p2-check-grid {
+    .p2-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 22px;
-      row-gap: 7px;
+      row-gap: 8px;
       align-items: start;
-      font-size: 11px;
+      font-size: 10px;
     }
 
-    .p2-col {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .p2-check-item {
+    .p2-item {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 8px;
-      min-height: 20px;
+      min-height: 24px;
     }
 
-    .p2-check-item .txt {
+    .p2-text {
       flex: 1;
       padding-right: 4px;
     }
 
-    .p2-check-item .opts {
+    .p2-opt {
       white-space: nowrap;
       flex-shrink: 0;
     }
 
-    .p2-check-foot {
+    .p2-box-foot {
       text-align: center;
-      font-size: 10px;
       margin-top: 4px;
+      font-size: 10px;
     }
 
-    .p2-section {
-      margin-top: 8px;
-      font-size: 11px;
+    .p2-block {
+      margin-top: 12px;
+      font-size: 10px;
     }
 
-    .p2-section-label {
+    .p2-label {
       margin-bottom: 4px;
       font-weight: normal;
     }
 
-    .p2-write-line {
+    .p2-line {
       border-bottom: 1px solid #000;
-      height: 16px;
-      margin-bottom: 6px;
+      height: 15px;
+      margin-bottom: 5px;
     }
 
-    .p2-write-line.short {
+    .p2-line.short-1 {
       width: 74%;
+    }
+
+    .p2-line.short-2 {
+      width: 88%;
     }
 
     .p2-footer {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin-top: 10px;
-      font-size: 11px;
+      gap: 18px;
+      margin-top: 12px;
+      font-size: 10px;
       align-items: end;
     }
 
     .p2-footer-field {
       display: flex;
-      align-items: center;
-      gap: 6px;
+      gap: 5px;
+      align-items: baseline;
     }
 
-    .p2-footer-line.local {
+    .p2-footer-blank-local {
       width: 95px;
       border-bottom: 1px solid #000;
-      height: 11px;
+      height: 10px;
       display: inline-block;
     }
 
-    .p2-footer-line.data {
+    .p2-footer-blank-data {
       width: 70px;
       border-bottom: 1px solid #000;
-      height: 11px;
+      height: 10px;
       display: inline-block;
     }
 
     .p2-signatures {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 34px;
+      gap: 26px;
       margin-top: 34px;
       text-align: center;
-      font-size: 11px;
+      font-size: 10px;
     }
 
-    .p2-sign-block {
-      position: relative;
-      min-height: 54px;
+    .p2-sign {
+      min-height: 42px;
     }
 
     .p2-sign-line {
       border-top: 1px solid #000;
       width: 82%;
-      margin: 0 auto 6px auto;
+      margin: 0 auto 5px auto;
       height: 1px;
     }
 
-    .p2-sign-label {
-      font-size: 10px;
-    }
-
-    .p2-entregador-nome {
+    .p2-sign-name {
       display: block;
-      margin-top: 4px;
+      margin-top: 3px;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     @media print {
-      body { background: white; padding: 0; margin: 0; }
-      .form-container { display: none !important; }
-      .container { max-width: 100%; margin: 0; }
-      .pages-container { display: block !important; }
+      body {
+        background: white;
+        padding: 0;
+        margin: 0;
+      }
+
+      .form-container {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .pages-container {
+        display: block !important;
+      }
+
       .doc-page {
         border: none;
         margin: 0;
         width: auto;
         min-height: auto;
       }
-      .logo-header img { max-width: 140px; }
+
+      .logo-header img {
+        max-width: 140px;
+      }
 
       #page2 {
-        padding: 14mm 13mm 12mm 13mm;
+        padding: 9mm 10mm 12mm 10mm;
       }
 
       #page2 .logo-header img {
-        max-width: 128px;
+        max-width: 118px;
       }
     }
   </style>
@@ -576,10 +546,9 @@
 
         <div class="upload-section">
           <label><strong>Etiqueta (imagem)</strong> — sai na Página 1 e IMPRIME</label>
-          <div class="small">Selecione a imagem da etiqueta (JPG/PNG). PDF como etiqueta não dá para embutir direto (navegador).</div>
+          <div class="small">Selecione a imagem da etiqueta (JPG/PNG). PDF como etiqueta não dá para embutir direto no navegador.</div>
 
           <input type="file" id="fileInput" accept="image/*" />
-
           <div class="upload-btn" id="btnEtiqueta">Selecionar etiqueta</div>
 
           <div class="image-preview" id="imagePreview">
@@ -599,7 +568,7 @@
           </div>
 
           <div class="note">
-            Observação: o navegador não consegue anexar o PDF automaticamente no WhatsApp. Ele abre a conversa com a mensagem pronta; você clica no “📎” e anexa o PDF salvo.
+            Observação: o navegador não consegue anexar o PDF automaticamente no WhatsApp. Ele abre a conversa com a mensagem pronta; depois você anexa o PDF manualmente.
           </div>
         </div>
 
@@ -641,7 +610,7 @@
           <strong>INFORMAÇÕES IMPORTANTES:</strong>
           <div>- Quando o motivo desta acareação for “CLIENTE DESCONHECE O RECEBIMENTO”, somente o entregador que realizou a entrega poderá realizar a acareação.</div>
           <div style="margin-top:6px;">- Na condição de ausência de pessoas no local, OBRIGATÓRIA foto do local repassado no grupo de WhatsApp.</div>
-          <div style="margin-top:6px;">- No caso de acareação realizada onde o destinatário estiver ausente, e ainda assim estiver alguém no local (no caso de portaria por exemplo), ALEM DA FOTO DO LOCAL repassada pelo grupo de WhatsApp, solicitar o preenchimento do formulário, indicando no campo “Grau de Parentesco = PORTARIA”.</div>
+          <div style="margin-top:6px;">- No caso de acareação realizada onde o destinatário estiver ausente, e ainda assim estiver alguém no local, além da foto do local repassada pelo grupo de WhatsApp, solicitar o preenchimento do formulário indicando no campo “Grau de Parentesco = PORTARIA”.</div>
         </div>
       </div>
 
@@ -654,91 +623,88 @@
 
         <div class="doc-title">ACAREAÇÃO</div>
 
-        <div class="p2-declaration">
-          Eu,
-          <span class="p2-line nome"></span>
-          portador(a) do documento RG/CPF nº
-          <span class="p2-line doc"></span>,
+        <div class="p2-intro">
+          Eu, <span class="p2-blank nome"></span>
+          portador(a) do documento RG/CPF n°
+          <span class="p2-blank doc"></span>,
           grau de parentesco com destinatário
-          <span class="p2-line parentesco"></span>,
+          <span class="p2-blank parentesco"></span>.
           <br>
           declaro informações referente ao CTE <strong><span id="doc-cte2"></span></strong>
           (Campos de preenchimento obrigatório):
         </div>
 
-        <div class="p2-check-wrap">
-          <div class="p2-check-grid">
-            <div class="p2-col">
-              <div class="p2-check-item">
-                <div class="txt">Recebi a carga mencionada</div>
-                <div class="opts">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-              </div>
-
-              <div class="p2-check-item">
-                <div class="txt">Recebi a carga em perfeitas condições</div>
-                <div class="opts">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-              </div>
-
-              <div class="p2-check-item">
-                <div class="txt">Recebi a embalagem danificada</div>
-                <div class="opts">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-              </div>
+        <div class="p2-box">
+          <div class="p2-grid">
+            <div class="p2-item">
+              <div class="p2-text">Recebi a carga mencionada</div>
+              <div class="p2-opt">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
             </div>
 
-            <div class="p2-col">
-              <div class="p2-check-item">
-                <div class="txt">Produtos internos estavam intactos</div>
-                <div class="opts">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-              </div>
-
-              <div class="p2-check-item">
-                <div class="txt">Estavam faltando itens do pedido dentro da caixa</div>
-                <div class="opts">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
-              </div>
+            <div class="p2-item">
+              <div class="p2-text">Produtos internos estavam intactos</div>
+              <div class="p2-opt">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
             </div>
+
+            <div class="p2-item">
+              <div class="p2-text">Recebi a carga em perfeitas condições</div>
+              <div class="p2-opt">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+            </div>
+
+            <div class="p2-item">
+              <div class="p2-text">Estavam faltando itens do pedido dentro da caixa</div>
+              <div class="p2-opt">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+            </div>
+
+            <div class="p2-item">
+              <div class="p2-text">Recebi a embalagem danificada</div>
+              <div class="p2-opt">( ) SIM&nbsp;&nbsp;&nbsp;( ) NÃO</div>
+            </div>
+
+            <div></div>
           </div>
 
-          <div class="p2-check-foot">(Campos de preenchimento obrigatório)</div>
+          <div class="p2-box-foot">(Campos de preenchimento obrigatório)</div>
         </div>
 
-        <div class="p2-section">
-          <div class="p2-section-label">Relato destinatário (Campo de preenchimento obrigatório):</div>
-          <div class="p2-write-line"></div>
-          <div class="p2-write-line"></div>
-          <div class="p2-write-line"></div>
-          <div class="p2-write-line short"></div>
+        <div class="p2-block" style="margin-top: 14px;">
+          <div class="p2-label">Relato destinatário (Campo de preenchimento obrigatório):</div>
+          <div class="p2-line"></div>
+          <div class="p2-line"></div>
+          <div class="p2-line"></div>
+          <div class="p2-line short-1"></div>
         </div>
 
-        <div class="p2-section" style="margin-top:12px;">
-          <div class="p2-section-label">Observações Entregador (Campo de preenchimento obrigatório):</div>
-          <div class="p2-write-line"></div>
-          <div class="p2-write-line"></div>
-          <div class="p2-write-line short"></div>
+        <div class="p2-block" style="margin-top: 14px;">
+          <div class="p2-label">Observações Entregador (Campo de preenchimento obrigatório):</div>
+          <div class="p2-line"></div>
+          <div class="p2-line"></div>
+          <div class="p2-line short-2"></div>
         </div>
 
         <div class="p2-footer">
           <div class="p2-footer-field">
             <strong>Local:</strong>
-            <span class="p2-footer-line local"></span>
+            <span class="p2-footer-blank-local"></span>
           </div>
 
           <div class="p2-footer-field">
             <strong>Data:</strong>
-            <span class="p2-footer-line data"></span>
+            <span class="p2-footer-blank-data"></span>
           </div>
         </div>
 
         <div class="p2-signatures">
-          <div class="p2-sign-block">
+          <div class="p2-sign">
             <div class="p2-sign-line"></div>
-            <div class="p2-sign-label">Nome/Assinatura do cliente</div>
+            <div>Nome/Assinatura do cliente</div>
           </div>
 
-          <div class="p2-sign-block">
+          <div class="p2-sign">
             <div class="p2-sign-line"></div>
-            <div class="p2-sign-label">
+            <div>
               Nome/Assinatura do entregador
-              <span class="p2-entregador-nome" id="doc-entregador-ass"></span>
+              <span class="p2-sign-name" id="doc-entregador-ass"></span>
             </div>
           </div>
         </div>
@@ -845,7 +811,10 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
 
     btnCopy.addEventListener("click", async () => {
       const text = (waMsg.value || "").trim();
-      if (!text) { alert("Gere o documento primeiro para criar a mensagem."); return; }
+      if (!text) {
+        alert("Gere o documento primeiro para criar a mensagem.");
+        return;
+      }
 
       try {
         await navigator.clipboard.writeText(text);
@@ -905,6 +874,7 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
         dataSolicitacao: dataSolicitacaoVal,
         dataLimite: dataLimiteVal
       };
+
       waMsg.value = buildWhatsAppMessage(data);
 
       pagesContainer.classList.add('visible');
