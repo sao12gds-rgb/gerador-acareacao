@@ -14,7 +14,10 @@
       padding: 20px;
     }
 
-    .container { max-width: 900px; margin: 0 auto; }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
     .form-container {
       background: white;
@@ -96,7 +99,7 @@
     .btn-generate:hover { background-color: #0052a3; }
 
     .btn-pdf { background-color: #28a745; color: white; display: none; }
-    .btn-pdf.visible { display: inline-flex; justify-content:center; }
+    .btn-pdf.visible { display: inline-flex; justify-content: center; }
     .btn-pdf:hover { background-color: #218838; }
 
     .btn-clear { background-color: #6c757d; color: white; }
@@ -141,7 +144,11 @@
     .upload-btn:hover { background-color: #0052a3; }
 
     .image-preview { margin-top: 15px; display: none; }
-    .image-preview img { max-width: 300px; border: 1px solid #ddd; border-radius: 4px; }
+    .image-preview img {
+      max-width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
 
     .pages-container { display: none; }
     .pages-container.visible { display: block; }
@@ -269,43 +276,40 @@
     }
 
     /* =========================
-       PAGINA 2 - FORMULARIO ORIGINAL
+       PAGINA 2 - EXATAMENTE NO
+       PADRAO DO MODELO ENVIADO
        ========================= */
 
     #page2 {
-      position: relative;
-      padding: 14mm 10mm 10mm 10mm;
-      font-size: 11px;
-      line-height: 1.1;
+      padding: 8mm 10mm 8mm 10mm;
+      font-size: 10px;
+      line-height: 1.05;
     }
 
     #page2 .logo-header {
       text-align: left;
-      margin-bottom: 0;
-      height: 24px;
+      margin-bottom: 4px;
     }
 
     #page2 .logo-header img {
-      max-width: 105px;
+      max-width: 98px;
       height: auto;
       display: block;
     }
 
     #page2 .doc-title {
       border-bottom: none;
+      font-size: 13px;
+      margin-top: 18px;
+      margin-bottom: 14px;
       padding-bottom: 0;
-      margin-top: 10px;
-      margin-bottom: 12px;
-      font-size: 14px;
       letter-spacing: 0;
-      text-align: center;
     }
 
     .p2-intro {
       font-size: 10px;
-      line-height: 1.05;
-      margin-top: 2px;
-      margin-bottom: 10px;
+      line-height: 1.15;
+      margin: 0 0 12px 14px;
     }
 
     .p2-blank {
@@ -316,63 +320,70 @@
       margin: 0 2px;
     }
 
-    .p2-blank.nome { width: 285px; }
-    .p2-blank.doc { width: 150px; }
-    .p2-blank.parentesco { width: 175px; }
+    .p2-blank.nome { width: 270px; }
+    .p2-blank.doc { width: 140px; }
+    .p2-blank.parentesco { width: 130px; }
+    .p2-blank.cte { width: 78px; }
 
     .p2-box {
-      border: 1px solid #000;
-      padding: 7px 8px 4px 8px;
-      margin-bottom: 16px;
+      width: 96%;
+      margin: 0 auto 22px auto;
+      border: 1px solid #7a7a7a;
+      padding: 8px 6px 2px 6px;
     }
 
     .p2-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      column-gap: 24px;
-      row-gap: 10px;
+      column-gap: 30px;
       align-items: start;
-      font-size: 10px;
     }
 
     .p2-col {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 14px;
     }
 
     .p2-item {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 10px;
-      min-height: 24px;
+      gap: 8px;
+      min-height: 34px;
     }
 
     .p2-text {
       flex: 1;
-      padding-right: 4px;
+      font-size: 10px;
+      line-height: 1.1;
+      padding-right: 6px;
     }
 
     .p2-opt {
-      white-space: nowrap;
+      width: 42px;
       flex-shrink: 0;
+      font-size: 10px;
+      line-height: 1.2;
+      text-align: left;
+      white-space: nowrap;
     }
 
     .p2-box-foot {
-      text-align: right;
-      font-size: 9px;
-      margin-top: 4px;
-      padding-right: 4px;
+      text-align: center;
+      font-size: 10px;
+      margin-top: 0;
+      padding-top: 2px;
     }
 
     .p2-block {
-      margin-top: 10px;
+      width: 88%;
+      margin: 0 auto 24px auto;
       font-size: 10px;
     }
 
     .p2-label {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-weight: normal;
     }
 
@@ -383,21 +394,22 @@
       width: 100%;
     }
 
-    .p2-line.short-1 {
-      width: 47%;
+    .p2-line.short-relato {
+      width: 74%;
     }
 
-    .p2-line.short-2 {
-      width: 92%;
+    .p2-line.short-obs {
+      width: 88%;
     }
 
     .p2-footer {
+      width: 88%;
+      margin: 6px auto 36px auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      margin-top: 12px;
+      gap: 40px;
       font-size: 10px;
-      align-items: end;
+      align-items: center;
     }
 
     .p2-footer-field {
@@ -407,44 +419,47 @@
     }
 
     .p2-footer-blank-local {
-      width: 95px;
+      width: 110px;
       border-bottom: 1px solid #000;
       height: 10px;
       display: inline-block;
     }
 
-    .p2-footer-blank-data {
-      width: 70px;
-      border-bottom: 1px solid #000;
-      height: 10px;
-      display: inline-block;
+    .p2-footer-blank-data-text {
+      font-size: 10px;
+      white-space: nowrap;
     }
 
     .p2-signatures {
+      width: 88%;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 42px;
-      margin-top: 38px;
-      text-align: center;
+      gap: 70px;
+      text-align: left;
       font-size: 10px;
     }
 
     .p2-sign {
-      min-height: 48px;
+      min-height: 46px;
     }
 
     .p2-sign-line {
-      border-top: 1px solid #000;
       width: 78%;
-      margin: 0 auto 6px auto;
+      border-top: 1px solid #000;
+      margin: 0 0 8px 16px;
       height: 1px;
+    }
+
+    .p2-sign-label {
+      margin-left: 16px;
     }
 
     .p2-sign-name {
       display: block;
       margin-top: 3px;
-      font-weight: bold;
-      font-size: 11px;
+      font-size: 10px;
+      font-weight: normal;
     }
 
     @media print {
@@ -474,16 +489,12 @@
         min-height: auto;
       }
 
-      .logo-header img {
-        max-width: 140px;
-      }
-
       #page2 {
-        padding: 14mm 10mm 10mm 10mm;
+        padding: 8mm 10mm 8mm 10mm;
       }
 
       #page2 .logo-header img {
-        max-width: 105px;
+        max-width: 98px;
       }
     }
   </style>
@@ -592,6 +603,7 @@
 
     <div class="pages-container" id="pagesContainer">
 
+      <!-- PAGINA 1 -->
       <div class="doc-page" id="page1">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express"
@@ -622,6 +634,7 @@
         </div>
       </div>
 
+      <!-- PAGINA 2 -->
       <div class="doc-page page-break" id="page2">
         <div class="logo-header">
           <img src="logo-azulcargo.png" alt="Azul Cargo Express"
@@ -631,14 +644,9 @@
         <div class="doc-title">ACAREAÇÃO</div>
 
         <div class="p2-intro">
-          Eu,<span class="p2-blank nome"></span>
-          portador (a) do documento RG/CPF n°
-          <span class="p2-blank doc"></span>,
-          grau de parentesco com destinatário
-          <span class="p2-blank parentesco"></span>,
-          <br>
-          declaro informações referente a NF <strong><span id="doc-cte2"></span></strong>
-          correspondente ao CTE. ____________________ (Campos de preenchimento obrigatório):
+          Eu, <span class="p2-blank nome"></span> portador (a) do<br>
+          documento RG/CPF n° <span class="p2-blank doc"></span>, grau de parentesco com destinatário<br>
+          declaro informações referente ao CTE <span class="p2-blank cte" id="doc-cte2-inline"></span> (Campos de preenchimento obrigatório):
         </div>
 
         <div class="p2-box">
@@ -681,14 +689,14 @@
           <div class="p2-line"></div>
           <div class="p2-line"></div>
           <div class="p2-line"></div>
-          <div class="p2-line short-1"></div>
+          <div class="p2-line short-relato"></div>
         </div>
 
-        <div class="p2-block" style="margin-top: 12px;">
+        <div class="p2-block">
           <div class="p2-label">Observações Entregador (Campo de preenchimento obrigatório):</div>
           <div class="p2-line"></div>
           <div class="p2-line"></div>
-          <div class="p2-line short-2"></div>
+          <div class="p2-line short-obs"></div>
         </div>
 
         <div class="p2-footer">
@@ -699,19 +707,19 @@
 
           <div class="p2-footer-field">
             <strong>Data:</strong>
-            <span class="p2-footer-blank-data"></span>
+            <span class="p2-footer-blank-data-text">___ / ___ / ___</span>
           </div>
         </div>
 
         <div class="p2-signatures">
           <div class="p2-sign">
             <div class="p2-sign-line"></div>
-            <div>Nome/Assinatura do cliente</div>
+            <div class="p2-sign-label">Nome/Assinatura do cliente</div>
           </div>
 
           <div class="p2-sign">
             <div class="p2-sign-line"></div>
-            <div>
+            <div class="p2-sign-label">
               Nome/Assinatura do entregador
               <span class="p2-sign-name" id="doc-entregador-ass"></span>
             </div>
@@ -873,7 +881,7 @@ Prazo de Entrega da Solicitação: ${data.dataLimite}`
       document.getElementById('doc-dataLimite-p1').textContent = dataLimiteVal;
       document.getElementById('doc-motivo-p1').textContent = motivoVal;
 
-      document.getElementById('doc-cte2').textContent = cteVal;
+      document.getElementById('doc-cte2-inline').textContent = cteVal;
       document.getElementById('doc-entregador-ass').textContent = entregadorVal;
 
       const data = {
