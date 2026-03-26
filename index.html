@@ -276,14 +276,14 @@
     }
 
     /* =========================
-       PAGINA 2 - EXATAMENTE NO
-       PADRAO DO MODELO ENVIADO
+       PAGINA 2 - AJUSTE FINAL
        ========================= */
 
     #page2 {
       padding: 8mm 10mm 8mm 10mm;
-      font-size: 10px;
-      line-height: 1.05;
+      font-size: 11px;
+      line-height: 1.15;
+      font-family: Arial, sans-serif;
     }
 
     #page2 .logo-header {
@@ -304,12 +304,14 @@
       margin-bottom: 14px;
       padding-bottom: 0;
       letter-spacing: 0;
+      text-align: center;
     }
 
     .p2-intro {
-      font-size: 10px;
-      line-height: 1.15;
+      font-size: 11px;
+      line-height: 1.2;
       margin: 0 0 12px 14px;
+      font-family: Arial, sans-serif;
     }
 
     .p2-blank {
@@ -322,7 +324,6 @@
 
     .p2-blank.nome { width: 270px; }
     .p2-blank.doc { width: 140px; }
-    .p2-blank.parentesco { width: 130px; }
     .p2-blank.cte { width: 78px; }
 
     .p2-box {
@@ -330,6 +331,7 @@
       margin: 0 auto 22px auto;
       border: 1px solid #7a7a7a;
       padding: 8px 6px 2px 6px;
+      font-family: Arial, sans-serif;
     }
 
     .p2-grid {
@@ -342,44 +344,43 @@
     .p2-col {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
 
     .p2-item {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: flex-start;
-      gap: 8px;
-      min-height: 34px;
+      gap: 3px;
+      min-height: 52px;
     }
 
     .p2-text {
-      flex: 1;
-      font-size: 10px;
-      line-height: 1.1;
-      padding-right: 6px;
+      font-size: 11px;
+      line-height: 1.15;
+      font-family: Arial, sans-serif;
     }
 
     .p2-opt {
-      width: 42px;
-      flex-shrink: 0;
-      font-size: 10px;
-      line-height: 1.2;
-      text-align: left;
+      font-size: 11px;
+      line-height: 1.25;
       white-space: nowrap;
+      font-family: Arial, sans-serif;
     }
 
     .p2-box-foot {
       text-align: center;
-      font-size: 10px;
-      margin-top: 0;
+      font-size: 11px;
+      margin-top: 2px;
       padding-top: 2px;
+      font-family: Arial, sans-serif;
     }
 
     .p2-block {
       width: 88%;
       margin: 0 auto 24px auto;
-      font-size: 10px;
+      font-size: 11px;
+      font-family: Arial, sans-serif;
     }
 
     .p2-label {
@@ -408,8 +409,9 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
-      font-size: 10px;
+      font-size: 11px;
       align-items: center;
+      font-family: Arial, sans-serif;
     }
 
     .p2-footer-field {
@@ -426,8 +428,9 @@
     }
 
     .p2-footer-blank-data-text {
-      font-size: 10px;
+      font-size: 11px;
       white-space: nowrap;
+      font-family: Arial, sans-serif;
     }
 
     .p2-signatures {
@@ -437,11 +440,12 @@
       grid-template-columns: 1fr 1fr;
       gap: 70px;
       text-align: left;
-      font-size: 10px;
+      font-size: 11px;
+      font-family: Arial, sans-serif;
     }
 
     .p2-sign {
-      min-height: 46px;
+      min-height: 66px;
     }
 
     .p2-sign-line {
@@ -453,13 +457,16 @@
 
     .p2-sign-label {
       margin-left: 16px;
+      font-size: 11px;
+      line-height: 1.2;
     }
 
     .p2-sign-name {
       display: block;
-      margin-top: 3px;
-      font-size: 10px;
+      margin-top: 6px;
+      font-size: 11px;
       font-weight: normal;
+      font-family: Arial, sans-serif;
     }
 
     @media print {
@@ -491,6 +498,8 @@
 
       #page2 {
         padding: 8mm 10mm 8mm 10mm;
+        font-size: 11px;
+        font-family: Arial, sans-serif;
       }
 
       #page2 .logo-header img {
@@ -654,29 +663,29 @@
             <div class="p2-col">
               <div class="p2-item">
                 <div class="p2-text">Recebi a carga mencionada</div>
-                <div class="p2-opt">( ) SIM<br>( ) NÃO</div>
+                <div class="p2-opt">(___) SIM<br>(___) NÃO</div>
               </div>
 
               <div class="p2-item">
                 <div class="p2-text">Recebi a carga em perfeitas condições</div>
-                <div class="p2-opt">( ) SIM<br>( ) NÃO</div>
+                <div class="p2-opt">(___) SIM<br>(___) NÃO</div>
               </div>
 
               <div class="p2-item">
                 <div class="p2-text">Recebi a embalagem danificada</div>
-                <div class="p2-opt">( ) SIM<br>( ) NÃO</div>
+                <div class="p2-opt">(___) SIM<br>(___) NÃO</div>
               </div>
             </div>
 
             <div class="p2-col">
               <div class="p2-item">
                 <div class="p2-text">Produtos internos estavam intactos</div>
-                <div class="p2-opt">( ) SIM<br>( ) NÃO</div>
+                <div class="p2-opt">(___) SIM<br>(___) NÃO</div>
               </div>
 
               <div class="p2-item">
                 <div class="p2-text">Estavam faltando itens do pedido dentro da caixa.</div>
-                <div class="p2-opt">( ) SIM<br>( ) NÃO</div>
+                <div class="p2-opt">(___) SIM<br>(___) NÃO</div>
               </div>
             </div>
           </div>
@@ -714,15 +723,15 @@
         <div class="p2-signatures">
           <div class="p2-sign">
             <div class="p2-sign-line"></div>
-            <div class="p2-sign-label">Nome/Assinatura do cliente</div>
+            <div class="p2-sign-label">
+              Nome/Assinatura do cliente
+              <span class="p2-sign-name" id="doc-entregador-ass"></span>
+            </div>
           </div>
 
           <div class="p2-sign">
             <div class="p2-sign-line"></div>
-            <div class="p2-sign-label">
-              Nome/Assinatura do entregador
-              <span class="p2-sign-name" id="doc-entregador-ass"></span>
-            </div>
+            <div class="p2-sign-label">Nome/Assinatura do entregador</div>
           </div>
         </div>
       </div>
@@ -758,7 +767,7 @@
 
     function formatDateBR(dateStr) {
       if (!dateStr) return "";
-      const [y,m,d] = dateStr.split("-");
+      const [y, m, d] = dateStr.split("-");
       if (!y || !m || !d) return "";
       return `${d}/${m}/${y}`;
     }
@@ -768,7 +777,7 @@
       const parts = dtStr.split("T");
       if (parts.length !== 2) return "";
       const date = formatDateBR(parts[0]);
-      const time = parts[1].slice(0,5);
+      const time = parts[1].slice(0, 5);
       return `${date} ${time}`;
     }
 
