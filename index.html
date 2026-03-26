@@ -299,7 +299,9 @@
 
     #page2 .doc-title {
       border-bottom: none;
-      font-size: 13px;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
       margin-top: 18px;
       margin-bottom: 14px;
       padding-bottom: 0;
@@ -325,6 +327,12 @@
     .p2-blank.nome { width: 270px; }
     .p2-blank.doc { width: 140px; }
     .p2-blank.cte { width: 78px; }
+
+    #doc-cte2-inline {
+      font-size: 12px;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+    }
 
     .p2-box {
       width: 96%;
@@ -504,6 +512,18 @@
 
       #page2 .logo-header img {
         max-width: 98px;
+      }
+
+      #page2 .doc-title {
+        font-size: 16px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+      }
+
+      #doc-cte2-inline {
+        font-size: 12px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
       }
     }
   </style>
@@ -723,15 +743,15 @@
         <div class="p2-signatures">
           <div class="p2-sign">
             <div class="p2-sign-line"></div>
-            <div class="p2-sign-label">
-              Nome/Assinatura do cliente
-              <span class="p2-sign-name" id="doc-entregador-ass"></span>
-            </div>
+            <div class="p2-sign-label">Nome/Assinatura do cliente</div>
           </div>
 
           <div class="p2-sign">
             <div class="p2-sign-line"></div>
-            <div class="p2-sign-label">Nome/Assinatura do entregador</div>
+            <div class="p2-sign-label">
+              Nome/Assinatura do entregador
+              <span class="p2-sign-name" id="doc-entregador-ass"></span>
+            </div>
           </div>
         </div>
       </div>
