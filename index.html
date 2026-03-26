@@ -324,14 +324,27 @@
       margin: 0 2px;
     }
 
-    .p2-blank.nome { width: 270px; }
-    .p2-blank.doc { width: 140px; }
-    .p2-blank.cte { width: 78px; }
+    .p2-blank.nome { width: 295px; }
+    .p2-blank.doc { width: 150px; }
+
+    .p2-blank.cte {
+      width: 95px;
+      height: auto;
+      line-height: 1;
+      padding-bottom: 2px;
+      text-align: center;
+      vertical-align: baseline;
+    }
 
     #doc-cte2-inline {
+      display: inline-block;
       font-size: 12px;
       font-weight: bold;
       font-family: Arial, sans-serif;
+      line-height: 1;
+      vertical-align: baseline;
+      position: relative;
+      top: -1px;
     }
 
     .p2-box {
@@ -524,6 +537,9 @@
         font-size: 12px;
         font-weight: bold;
         font-family: Arial, sans-serif;
+        line-height: 1;
+        position: relative;
+        top: -1px;
       }
     }
   </style>
@@ -675,7 +691,7 @@
         <div class="p2-intro">
           Eu, <span class="p2-blank nome"></span> portador (a) do<br>
           documento RG/CPF n° <span class="p2-blank doc"></span>, grau de parentesco com destinatário<br>
-          declaro informações referente ao CTE <span class="p2-blank cte" id="doc-cte2-inline"></span> (Campos de preenchimento obrigatório):
+          declaro informações referente ao CTE <span class="p2-blank cte"><span id="doc-cte2-inline"></span></span> (Campos de preenchimento obrigatório):
         </div>
 
         <div class="p2-box">
