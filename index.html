@@ -817,7 +817,16 @@
       return `${date} ${time}`;
     }
 
- ACAREAÇÃO DE ENTREGA AWB/CTE: 57291584 Entregador: CAIQUE TORRES DA SILVA Motivo da Solicitação: CLIENTE DESCONHECE O RECEBIMENTO Data/Hora da Solicitação: 30/03/2026 17:59 Prazo de Entrega da Solicitação: 06/04/2026
+    function buildWhatsAppMessage(data) {
+      return (
+`ACAREAÇÃO DE ENTREGA
+AWB/CTE: ${data.cte}
+Entregador: ${data.entregador}
+Motivo da Solicitação: ${data.motivo}
+Data/Hora da Solicitação: ${data.dataSolicitacao}
+Prazo de Entrega da Solicitação: ${data.dataLimite}`
+      );
+    }
 
     function updateWhatsButtons() {
       const hasMsg = (waMsg.value || "").trim().length > 0;
